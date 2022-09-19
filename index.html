@@ -2,26 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon"
+        href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png"
+        type="image/jpg" />
+    <title>VIRTUAL-MCDONALD</title>
+    <style>
+        #food {
+            display: grid;
+            grid-template-columns: 77% 22%;
+            gap: 10px;
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        #item {
+            border: 2px solid red;
+            padding: 10px;
+        }
+
+        #order {
+            border: 2px solid green;
+            padding: 10px;
+        }
+
+        input.Box {
+            width: 100px;
+            background-color: black;
+        }
+    </style>
 </head>
+
 <body>
     <nav>
-        <img src="https://pngimage.net/wp-content/uploads/2018/06/mcdonalds-png-logo-1.png" >
-        <h3>VIRTUAL-MCDONALD</h3>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald's_Golden_Arches.svg/1200px-McDonald's_Golden_Arches.svg.png"
+            alt="MC Donald logo " />
+        <h1>VIRTUAL-MCDONALD</h1>
     </nav>
-    <button id="order" onclick="order()">Order Food</button>
+
     <div class="loding"></div>
     <div class="display"></div>
+
     <div id="food">
-        <form id="myform">
-        </form>
+        <div id="item">
+            <form id="myform"></form>
+        </div>
+        <div id="order"><button id="order" onclick="order()">Order Food</button></div>
     </div>
+
+    <hr>
+    <input type="checkbox" onclick="hello()" />
 </body>
 <script src="index.js">
+    function hello() {
+        console.log("Sfsdfs")
+        alert("dsfsdf")
+    }
 </script>
 
 </html>

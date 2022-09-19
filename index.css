@@ -1,24 +1,32 @@
 * {
-    font-size: 30px;
-    font-weight: 500;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: cursive;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-    height: 100px;
-    justify-content: space-evenly;
+    padding: 30px;
+    height: 80px;
     align-content: center;
-    background-color: aliceblue;
+    justify-content: space-around;
+    background-color: rgb(220, 56, 19);
 }
 
+nav>h1 {
+    color: white;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+/* ------------------- */
 #myform {
     display: grid;
     width: 85%;
     margin: auto;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 
 #myform>label {
@@ -32,6 +40,7 @@ nav {
     margin: auto;
     border-radius: 10px;
 }
+
 #myform>label>input {
     padding: 10px;
     width: 98%;
@@ -75,4 +84,22 @@ button {
 .loding img {
     width: 100%;
     margin: auto;
+}
+
+@media only screen and (max-width: 1440px) {
+    #myform {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #myform {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 525px) {
+    #myform {
+        grid-template-columns: 90%;
+    }
 }
