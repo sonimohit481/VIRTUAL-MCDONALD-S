@@ -5,68 +5,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="index.css" /> -->
+    <link rel="stylesheet" href="index.css" />
     <link rel="icon"
         href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/1200px-McDonald%27s_Golden_Arches.svg.png"
         type="image/jpg" />
     <title>VIRTUAL-MCDONALD</title>
-    <style>
-        #food {
-            display: grid;
-            grid-template-columns: 77% 22%;
-            gap: 10px;
-            width: 90%;
-            margin: auto;
-            padding: 10px;
-        }
-
-        #item {
-            border: 2px solid red;
-            padding: 10px;
-        }
-
-        #order {
-            border: 2px solid green;
-            padding: 10px;
-        }
-
-        input.Box {
-            width: 100px;
-            background-color: black;
-        }
-    </style>
 </head>
 
 <body>
-    <div>
-        <nav>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald's_Golden_Arches.svg/1200px-McDonald's_Golden_Arches.svg.png"
-                alt="MC Donald logo " />
-            <h1>VIRTUAL-MCDONALD</h1>
-
-        </nav>
-        <div>
-            <a href="/index.html">Home
-            </a>
-            <a href="/Cart.html">Cart
-            </a>
+    <nav>
+        <div id="headding">
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald's_Golden_Arches.svg/1200px-McDonald's_Golden_Arches.svg.png"
+                    alt="MC Donald logo " />
+            </div>
+            <div>
+                <h3>VIRTUAL- MCDONALD</h3>
+            </div>
         </div>
+        <div id="navitem">
+            <button>
+                <a href="/index.html">Home </a>
+            </button>
+            <button>
+                <a href="/Cart.html">Cart </a>
+            </button>
+        </div>
+    </nav>
+    <div id="menuitems">
+        <div id="myform"></div>
+        <!-- <div id="order"><button id="order" onclick="order()">Order Food</button></div> -->
     </div>
     <!-- 
     <div class="loding"></div>
     <div class="display"></div> -->
+    <!-- 
 
-    <div id="food">
-        <div id="item">
-            <div id="myform"></div>
-        </div>
-        <!-- <div id="order"><button id="order" onclick="order()">Order Food</button></div> -->
-    </div>
-
-    <!-- <hr>
+    <hr>
     <input type="checkbox" onclick="hello()" /> -->
 </body>
-<script src="index.js">
-</script>
+<script src="index.js"></script>
+<!-- <script></script> -->
 
 </html>

@@ -126,26 +126,56 @@ food.forEach(ele => {
     var img = document.createElement("img");
     img.src = ele.img;
     div1.appendChild(img)
-    var h3 = document.createElement("h3");
-    h3.innerText = ele.name;
-    var p = document.createElement("p");
-    p.innerText = ele.description;
-    var p1 = document.createElement("p");
-    p1.innerText = "Rs:" + ele.price;
-    var button = document.createElement("button");
-    button.innerText = "Order";
-    button.addEventListener("click", (event) => {
-        event.preventDefault();
-        alert(`${ele.name} adderd to cart sucessfully, With Price of :${ele.price} \n for final placeing order please visit cart `);
-        cart.push(ele);
-        localStorage.setItem("food", JSON.stringify(cart));
-        // setTimeout(() => {
-
-        //     alert("Sdgdfgdfhghdfghdfg");
-        //     localStorage.clear();
-        // }, 3000)
-    });
-    div.append(div1, h3, p, p1, button)
+    var div2 = document.createElement("div");
+    var name = document.createElement("p");
+    name.innerText = ele.name;
+    div2.appendChild(name);
+    var div3 = document.createElement("div");
+    var desc = document.createElement("p");
+    desc.innerText = ele.description;
+    div3.appendChild(desc);
+    var div4 = document.createElement("div");
+    var price = document.createElement("p");
+    price.innerText = "Rs:" + ele.price;
+    div4.appendChild(price);
+    var div5 = document.createElement("div");
+    let mbtn = document.createElement("button");
+    mbtn.setAttribute("class", "minusBtn");
+    mbtn.innerText = "-";
+    mbtn.style.display = "none";
+    let btn = document.createElement("button");
+    btn.setAttribute("class", "mainBtn");
+    btn.innerText = "ADD";
+    let pbtn = document.createElement("button");
+    pbtn.setAttribute("class", "plusBtn");
+    pbtn.innerText = "+";
+    pbtn.style.display = "none";
+    btn.addEventListener("click", () => {
+        if (btn.innerText == "ADD") {
+            btn.innerText = 1;
+            mbtn.style.display = "inline-block";
+            pbtn.style.display = "inline-block";
+        }
+    })
+    mbtn.addEventListener("click", () => {
+        btn.innerText = +(btn.innerText) - 1;
+        if (btn.innerText < 5) {
+            pbtn.style.display = "inline-block";
+        }
+        if (btn.innerText < 1) {
+            btn.innerText = "ADD";
+            mbtn.style.display = "none";
+            pbtn.style.display = "none";
+        }
+    })
+    pbtn.addEventListener("click", () => {
+        btn.innerText = +(btn.innerText) + 1;
+        if (btn.innerText >= 5) {
+            pbtn.style.display = "none";
+        }
+    })
+    div5.append(mbtn, btn, pbtn)
+    div.append(div1, div2, div3, div4, div5)
     document.querySelector("#myform").append(div);
 
 });
