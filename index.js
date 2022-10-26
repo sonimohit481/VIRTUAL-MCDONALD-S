@@ -195,9 +195,7 @@ foodItems.forEach(ele => {
                 }
             }
             localStorage.setItem("CartItems", JSON.stringify(demo));
-
         }
-
     })
     pbtn.addEventListener("click", () => {
         let demo = JSON.parse(localStorage.getItem("CartItems"));
