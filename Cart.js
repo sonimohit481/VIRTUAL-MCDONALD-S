@@ -1,13 +1,22 @@
 let Cart = JSON.parse(localStorage.getItem("CartItems"));
-let Qan = Cart.reduce((acc, val) => {
-    acc = acc + val.qan;
-    return acc
-}, 0)
-let Price = Cart.reduce((acc, val) => {
-    acc = acc + val.price;
-    return acc
-}, 0)
-console.log(Qan, Price)
+function display() {
+    let Cart = JSON.parse(localStorage.getItem("CartItems"));
+    let Qan = Cart.reduce((acc, val) => {
+        acc = acc + val.qan;
+        return acc;
+
+    }, 0)
+    let Price = Cart.reduce((acc, val) => {
+        acc = acc + +(val.price) * +(val.qan);
+        return acc;
+    }, 0)
+    console.log(Qan)
+    document.querySelector("#cartitems").innerText = "";
+    document.querySelector("#cartprice").innerText = "";
+    document.querySelector("#cartitems").append(Qan);
+    document.querySelector("#cartprice").append(Price);
+}
+display();
 Cart.map((ele) => {
     let div = document.createElement("div");
     div.setAttribute("class", "items")
@@ -58,6 +67,7 @@ Cart.map((ele) => {
             }
             localStorage.setItem("CartItems", JSON.stringify(demo));
         }
+        display();
     })
     pbtn.addEventListener("click", () => {
         let demo = JSON.parse(localStorage.getItem("CartItems"));
@@ -72,6 +82,7 @@ Cart.map((ele) => {
         if (btn.innerText >= 5) {
             pbtn.style.display = "none";
         }
+        display();
     })
     div4.append(mbtn, btn, pbtn)
     //-------------------------------------------- 

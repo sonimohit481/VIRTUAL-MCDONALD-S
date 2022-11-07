@@ -162,48 +162,12 @@ foodItems.forEach(ele => {
     let price = document.createElement("p");
     price.innerText = "Rs:" + ele.price;
     div4.appendChild(price);
-    // let div5 = document.createElement("div");
     let div5 = document.createElement("div");
-    // -----------------------------------------------
-    // let mbtn = document.createElement("button");
-    // mbtn.setAttribute("class", "minusBtn");
-    // mbtn.innerText = "-";
-    // mbtn.style.display = "none";
+
     let btn = document.createElement("button");
     btn.setAttribute("class", "mainBtn");
     btn.innerText = "ADD";
-    // let pbtn = document.createElement("button");
-    // pbtn.setAttribute("class", "plusBtn");
-    // pbtn.innerText = "+";
-    // pbtn.style.display = "none";
-    // if (ele.qan === 0) {
-    //     btn.innerText == "ADD"
-    // }
-    // btn.addEventListener("click", () => {
-    //     if (btn.innerText == "ADD") {
-    //         let demo = JSON.parse(localStorage.getItem("CartItems"));
-    //         for (let i in demo) {
-    //             if (demo[i].id === ele.id) {
-    //                 demo[i] = { ...demo[i], qan: 1 }
-    //                 break;
-    //             }
-    //         }
-    //         localStorage.setItem("CartItems", JSON.stringify(demo));
-    //         // btn.innerText = +(btn.innerTex÷ 1;
-    //         // initial = {
-    //         //     id: ele.id,
-    //         //     img: ele.img,
-    //         //     name: ele.name,
-    //         //     price: ele.price,
-    //         //     qan: 1,
-    //         // }
-    //         // Cart.push(initial);
-    //         // localStorage.setItem("CartItems", JSON.stringify(Cart));
-    //         btn.innerText = 1;
-    //         mbtn.style.display = "inline-block";
-    //         pbtn.style.display = "inline-block";
-    //     }
-    // })
+
     btn.addEventListener("click", () => {
         let initial = {
             id: ele.id,
@@ -214,48 +178,10 @@ foodItems.forEach(ele => {
         }
         Cart.push(initial);
         localStorage.setItem("CartItems", JSON.stringify(Cart));
-
+        alert("iten added succesfully into the cart");
+        btn.style.display = "none";
     })
-    // mbtn.addEventListener("click", () => {
-    //     btn.innerText = +(btn.innerText) - 1;
-    //     if (btn.innerText < 5) {
-    //         pbtn.style.display = "inline-block";
-    //     }
-    //     if (btn.innerText < 1) {
-    //         let demo = JSON.parse(localStorage.getItem("CartItems"));
-    //         Cart = demo.filter((item) => item.id !== ele.id);
-    //         localStorage.setItem("CartItems", JSON.stringify(Cart));
-    //         btn.innerText = "ADD";
-    //         mbtn.style.display = "none";
-    //         pbtn.style.display = "none";
-    //     }
-    //     else {
-    //         let demo = JSON.parse(localStorage.getItem("CartItems"));
-    //         for (let i in demo) {
-    //             if (demo[i].id === ele.id) {
-    //                 demo[i] = { ...demo[i], qan: +(btn.innerText) }
-    //                 break;
-    //             }
-    //         }
-    //         localStorage.setItem("CartItems", JSON.stringify(demo));
-    //     }
-    // })
-    // pbtn.addEventListener("click", () => {
-    //     let demo = JSON.parse(localStorage.getItem("CartItems"));
-    //     for (let i in demo) {
-    //         if (demo[i].id === ele.id) {
-    //             demo[i] = { ...demo[i], qan: +(btn.innerText) + 1 }
-    //             break;
-    //         }
-    //     }
-    //     localStorage.setItem("CartItems", JSON.stringify(demo));
-    //     btn.innerText = +(btn.innerText) + 1;
-    //     if (btn.innerText >= 5) {
-    //         pbtn.style.display = "none";
-    //     }
-    // })
-    // div5.append(mbtn, btn, pbtn)
-    // ----------------
+
     div5.appendChild(btn)
     div.append(div1, div2, div3, div4, div5)
     document.querySelector("#menuitems").append(div);

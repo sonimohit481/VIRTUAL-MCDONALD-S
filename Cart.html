@@ -71,6 +71,11 @@
         color: rgb(0, 0, 0);
     }
 
+    #navitem button:active {
+        background-color: aliceblue;
+        color: rgb(202, 2, 2);
+    }
+
     #Cart {
         display: grid;
         padding: 20px;
@@ -208,11 +213,10 @@
             </button>
         </div>
     </nav>
-    <!-- <nav>
-        <div id="cartnav">
-            <h2>Weocome to the virtual macdonad chart</h2>
-        </div>
-    </nav> -->
+    <div id="cartnav">
+        <p>Total items : <span id="cartitems"></span></p>
+        <p>Total Price : <span id="cartprice"></span></p>
+    </div>
     <div id="Cart">
 
     </div>
