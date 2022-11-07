@@ -56,6 +56,7 @@ Cart.map((ele) => {
             btn.style.display = "none";
             mbtn.style.display = "none";
             pbtn.style.display = "none";
+            window.location.href = "/Cart.html";
         }
         else {
             let demo = JSON.parse(localStorage.getItem("CartItems"));
