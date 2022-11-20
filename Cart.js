@@ -14,16 +14,31 @@ function display() {
     document.querySelector("#cartprice").innerText = "";
     document.querySelector("#cartitems").append(Qan);
     document.querySelector("#cartprice").append(Price);
-    if (Cart.length === 0) {
+    if (Cart.length == 0 || localStorage.getItem("CartItems") == null) {
         document.querySelector("#Order").setAttribute('class', 'Order1')
     }
     if (Cart.length > 0) {
         document.querySelector("#Order").addEventListener("click", () => {
-            // alert("soni is handsome");
             let div = document.createElement("div");
-            div.setAttribute("class", "OrderDisplay");
-
-
+            div.setAttribute("id", "OrderDisplay");
+            let img = document.createElement("img");
+            img.src = "https://cdn.dribbble.com/users/539024/screenshots/6142362/burger-dribble.gif";
+            let orderid = document.createElement("p");
+            let id = Math.floor(Math.random() * (99999 - 999 + 1) + 999);
+            orderid.innerText = "Your order no is " + id;
+            let orderitem = document.createElement("p");
+            orderitem.innerText = "Total-item: " + Qan;
+            let orderprice = document.createElement("p");
+            orderprice.innerText = "Total price to paid: ₹" + Price;
+            div.append(img, orderid, orderitem, orderprice)
+            document.querySelector("#display").append(div);
+            localStorage.clear();
+            let time = Math.floor(Math.random() * (10 - 2 + 1) + 2);
+            time = time * 1000;
+            console.log(time)
+            setTimeout(() => {
+                window.location.href = "/index.html";
+            }, time);
         });
     }
 
