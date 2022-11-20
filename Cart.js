@@ -10,11 +10,23 @@ function display() {
         acc = acc + +(val.price) * +(val.qan);
         return acc;
     }, 0)
-    console.log(Qan)
     document.querySelector("#cartitems").innerText = "";
     document.querySelector("#cartprice").innerText = "";
     document.querySelector("#cartitems").append(Qan);
     document.querySelector("#cartprice").append(Price);
+    if (Cart.length === 0) {
+        document.querySelector("#Order").setAttribute('class', 'Order1')
+    }
+    if (Cart.length > 0) {
+        document.querySelector("#Order").addEventListener("click", () => {
+            // alert("soni is handsome");
+            let div = document.createElement("div");
+            div.setAttribute("class", "OrderDisplay");
+
+
+        });
+    }
+
 }
 display();
 Cart.map((ele) => {
@@ -86,7 +98,6 @@ Cart.map((ele) => {
         display();
     })
     div4.append(mbtn, btn, pbtn)
-    //-------------------------------------------- 
     div.append(div2, div1, div3, div4)
     document.querySelector("#Cart").append(div);
 
