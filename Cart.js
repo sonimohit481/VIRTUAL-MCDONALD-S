@@ -14,32 +14,12 @@ function display() {
     document.querySelector("#cartprice").innerText = "";
     document.querySelector("#cartitems").append(Qan);
     document.querySelector("#cartprice").append(Price);
-    if (Cart.length == 0 || localStorage.getItem("CartItems") == null) {
+    if (Cart.length == 0) {
         document.querySelector("#Order").setAttribute('class', 'Order1')
     }
     if (Cart.length > 0) {
-        document.querySelector("#Order").addEventListener("click", () => {
-            let div = document.createElement("div");
-            div.setAttribute("id", "OrderDisplay");
-            let img = document.createElement("img");
-            img.src = "https://cdn.dribbble.com/users/539024/screenshots/6142362/burger-dribble.gif";
-            let orderid = document.createElement("p");
-            let id = Math.floor(Math.random() * (99999 - 999 + 1) + 999);
-            orderid.innerText = "Your order no is " + id;
-            let orderitem = document.createElement("p");
-            orderitem.innerText = "Total-item: " + Qan;
-            let orderprice = document.createElement("p");
-            orderprice.innerText = "Total price to paid: ₹" + Price;
-            div.append(img, orderid, orderitem, orderprice)
-            document.querySelector("#display").append(div);
-            localStorage.clear();
-            let time = Math.floor(Math.random() * (10 - 2 + 1) + 2);
-            time = time * 1000;
-            console.log(time)
-            setTimeout(() => {
-                window.location.href = "/index.html";
-            }, time);
-        });
+        document.querySelector("#Order").removeAttribute("class");
+        // Placeorder();
     }
 
 }
@@ -120,3 +100,56 @@ Cart.map((ele) => {
     document.querySelector("#Cart").append(div);
 
 })
+function Placeorder(event) {
+    event.preventDefault();
+    //----for removing the cart item visually
+    document.querySelector("#Cart").remove();
+    //----for removing the order button
+    document.querySelector("#Order").setAttribute('class', 'Order1')
+
+    let Cart = JSON.parse(localStorage.getItem("CartItems"));
+    let Qan = Cart.reduce((acc, val) => {
+        acc = acc + val.qan;
+        return acc;
+
+    }, 0)
+    let Price = Cart.reduce((acc, val) => {
+        acc = acc + +(val.price) * +(val.qan);
+        return acc;
+    }, 0)
+    alert("soniiiii");
+    let box = document.createElement("div");
+    box.setAttribute("id", "OrderDisplay");
+    let img = document.createElement("img");
+    img.src = "https://cdn.dribbble.com/users/539024/screenshots/6142362/burger-dribble.gif";
+    let msg = document.createElement("p");
+    msg.innerText = "Your order is Preparing";
+    let orderid = document.createElement("p");
+    let id = Math.floor(Math.random() * (99999 - 999 + 1) + 999);
+    orderid.innerText = "Your order no is " + id;
+    box.append(img, msg, orderid);
+    document.querySelector("#display").appendChild(box);
+    let time = Math.floor(Math.random() * (10 - 4 + 1) + 4);
+    time = time * 1000;
+    console.log(time)
+    setTimeout(() => {
+        document.querySelector("#display").removeChild(box);
+        let orderitem = document.createElement("p");
+        orderitem.innerText = "Total-item: " + Qan;
+        let orderprice = document.createElement("p");
+        orderprice.innerText = "Total price to paid: ₹" + Price;
+        let boxnew = document.createElement("div");
+        boxnew.setAttribute("id", "OrderDisplay");
+        let msg = document.createElement("p");
+        msg.innerText = "thanks for wating. 🙏 please visit again";
+        boxnew.append(orderitem, orderprice, msg);
+        document.querySelector("#display").appendChild(boxnew);
+        setTimeout(() => {
+            Cart = [];
+            localStorage.setItem("CartItems", JSON.stringify(Cart));
+            window.location.href = "/index.html";
+        }, 3000)
+
+        // --------
+    }, time);
+}

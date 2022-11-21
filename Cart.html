@@ -174,7 +174,7 @@
         color: aliceblue;
         text-align: center;
         border-radius: 10px;
-        z-index: 9999;
+        /* z-index: 9999; */
     }
 
     #OrderDisplay>img {
@@ -291,11 +291,11 @@
             <p>Total Price : <span id="cartprice"></span></p>
         </div>
     </nav>
-    <div id="display"> </div>
+    <div id="display"></div>
     <div id="Cart">
 
     </div>
-    <button id="Order">Order</button>
+    <button id="Order" onclick="Placeorder(event)">Order</button>
 
 </body>
 <script src="/Cart.js">
