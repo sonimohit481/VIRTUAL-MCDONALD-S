@@ -60,19 +60,32 @@ nav #navitem {
     color: rgb(0, 0, 0);
 }
 
-#menuitems {
+#cartnav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    align-items: center;
+    color: bisque;
+    font-size: 24px;
+    text-shadow: 1px 1px #000000;
+    text-align-last: center;
+}
+
+#cartItem {
     display: grid;
     padding: 20px;
     gap: 10px;
     margin: auto;
     grid-template-columns: repeat(1, 1fr);
+
 }
 
-#menuitems .items {
+#cartItem .items {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 70%;
+    width: 80%;
     height: 100%;
     border-radius: 20px;
     padding: 20px;
@@ -83,19 +96,21 @@ nav #navitem {
 
 }
 
-.items div:first-child img {
-    width: 100%;
-}
-
-.items div:nth-child(2n) {
+.items div:first-child {
     font-size: 16px;
     font-weight: 900;
+}
+
+.items div:nth-child(2n) img {
+    width: 100%;
+
 }
 
 .items div:last-child {
     display: flex;
     padding: 10px;
     justify-content: space-evenly;
+    /* border: 1px solid red; */
     width: 100%;
     margin: 0px auto;
 }
@@ -113,16 +128,65 @@ nav #navitem {
     margin: auto;
 }
 
+.Order1 {
+    display: none;
+}
+
+#orderBtn {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: rgb(234, 234, 32);
+    background-color: rgb(219, 50, 50);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    text-align: center;
+    border: 1px solid rgb(233, 237, 15);
+    font-size: 16px;
+}
+
+#displayOrderDetail {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: 30px auto;
+}
+
+#OrderDisplay {
+    /* position: relative;
+        top: 10%;
+        left: 10%; */
+    font-size: 24px;
+    padding: 10px;
+    background-color: brown;
+    color: aliceblue;
+    text-align: center;
+    border-radius: 10px;
+    /* z-index: 9999; */
+}
+
+#OrderDisplay>img {
+
+    width: 100%;
+}
+
 /* tablet and i pad */
 @media(min-width: 481px) and (max-width:768px) {
     #headding div:last-child {
         font-size: 1.5em;
     }
 
-    #menuitems {
+    #cartItem {
         grid-template-columns: repeat(2, 1fr);
 
     }
+
+    #cartnav {
+        flex-direction: row;
+    }
+
+
 }
 
 /* all sceen laptops */
@@ -131,10 +195,15 @@ nav #navitem {
         font-size: 1.8em;
     }
 
-    #menuitems {
+    #cartItem {
         grid-template-columns: repeat(3, 1fr);
 
     }
+
+    #cartnav {
+        flex-direction: row;
+    }
+
 }
 
 /* tv */
@@ -147,14 +216,23 @@ nav #navitem {
         font-size: 32px;
     }
 
-    #menuitems {
+    #cartItem {
         grid-template-columns: repeat(4, 1fr);
 
+    }
+
+    #cartnav {
+        flex-direction: row;
+    }
+
+    #orderBtn {
+        font-size: 32px;
     }
 }
 
 /* ulta wide tv  */
 @media(min-width: 2048px) {
+
     #headding div:last-child {
         font-size: 2.5em;
     }
@@ -163,7 +241,16 @@ nav #navitem {
         font-size: 48px;
     }
 
-    #menuitems {
+    #cartItem {
         grid-template-columns: repeat(5, 1fr);
+
+    }
+
+    #cartnav {
+        flex-direction: row;
+    }
+
+    #orderBtn {
+        font-size: 48px;
     }
 }

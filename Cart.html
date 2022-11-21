@@ -5,266 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="/index.css" /> -->
+    <title>Cart </title>
+    <link rel="stylesheet" href="/cart.css" />
 </head>
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        box-sizing: border-box;
-    }
 
-    nav {
-        display: flex;
-        flex-direction: column;
-        padding: 10px;
-        background-color: rgb(220, 56, 19);
-        height: auto;
-    }
-
-    nav #headding {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        text-align-last: center;
-    }
-
-    #headding div {
-        height: auto;
-        width: 40%;
-    }
-
-    #headding div:last-child {
-        height: auto;
-        width: 70%;
-        color: rgb(255, 205, 0);
-        text-shadow: 1px 1px #000000;
-    }
-
-    #headding div img {
-        width: 100px;
-        height: auto;
-    }
-
-    nav #navitem {
-        border-top: 2px solid rgb(0, 0, 0);
-        width: 90%;
-        margin: auto;
-        padding: 10px;
-        display: flex;
-        justify-content: space-around;
-    }
-
-    #navitem button {
-        padding: 10px 20px;
-        border-radius: 15px;
-        box-shadow: rgb(0, 0, 0) 0px 20px 30px -10px;
-        background: rgb(233, 221, 0);
-        /* opacity: 0.5; */
-    }
-
-    #navitem button a {
-        text-decoration: none;
-        color: rgb(0, 0, 0);
-    }
-
-    #cartnav {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        margin-top: 20px;
-        align-items: center;
-        color: bisque;
-        font-size: 24px;
-        text-shadow: 1px 1px #000000;
-        text-align-last: center;
-    }
-
-    #Cart {
-        display: grid;
-        padding: 20px;
-        gap: 10px;
-        margin: auto;
-        grid-template-columns: repeat(1, 1fr);
-
-    }
-
-    #Cart .items {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 80%;
-        height: 100%;
-        border-radius: 20px;
-        padding: 20px;
-        margin: auto;
-        text-align: justify;
-        border: 2px solid rgb(0, 0, 6);
-        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-
-    }
-
-    .items div:first-child {
-        font-size: 16px;
-        font-weight: 900;
-    }
-
-    .items div:nth-child(2n) img {
-        width: 100%;
-
-    }
-
-    .items div:last-child {
-        display: flex;
-        padding: 10px;
-        justify-content: space-evenly;
-        /* border: 1px solid red; */
-        width: 100%;
-        margin: 0px auto;
-    }
-
-    .items div:last-child>button {
-        color: rgb(234, 234, 32);
-        background-color: rgb(219, 50, 50);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        text-align: center;
-        border: 1px solid rgb(233, 237, 15);
-        width: 80%;
-        border-radius: 10px;
-        padding: 5px 10px;
-        font-weight: 700;
-        margin: auto;
-    }
-
-    .Order1 {
-        display: none;
-    }
-
-    #Order {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: rgb(234, 234, 32);
-        background-color: rgb(219, 50, 50);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        text-align: center;
-        border: 1px solid rgb(233, 237, 15);
-        font-size: 16px;
-    }
-
-    #display {
-        display: flex;
-        flex-direction: column;
-        width: 40%;
-        margin: 30px auto;
-    }
-
-    #OrderDisplay {
-        /* position: relative;
-        top: 10%;
-        left: 10%; */
-        font-size: 24px;
-        padding: 10px;
-        background-color: brown;
-        color: aliceblue;
-        text-align: center;
-        border-radius: 10px;
-        /* z-index: 9999; */
-    }
-
-    #OrderDisplay>img {
-
-        width: 100%;
-    }
-
-    /* tablet and i pad */
-    @media(min-width: 481px) and (max-width:768px) {
-        #headding div:last-child {
-            font-size: 1.5em;
-        }
-
-        #Cart {
-            grid-template-columns: repeat(2, 1fr);
-
-        }
-
-        #cartnav {
-            flex-direction: row;
-        }
-
-
-    }
-
-    /* all sceen laptops */
-    @media(min-width: 769px) and (max-width:1438px) {
-        #headding div:last-child {
-            font-size: 1.8em;
-        }
-
-        #Cart {
-            grid-template-columns: repeat(3, 1fr);
-
-        }
-
-        #cartnav {
-            flex-direction: row;
-        }
-
-    }
-
-    /* tv */
-    @media(min-width: 1439px) and (max-width: 2047px) {
-        #headding div:last-child {
-            font-size: 2em;
-        }
-
-        #navitem button a {
-            font-size: 32px;
-        }
-
-        #Cart {
-            grid-template-columns: repeat(4, 1fr);
-
-        }
-
-        #cartnav {
-            flex-direction: row;
-        }
-
-        #Order {
-            font-size: 32px;
-        }
-    }
-
-    /* ulta wide tv  */
-    @media(min-width: 2048px) {
-
-        #headding div:last-child {
-            font-size: 2.5em;
-        }
-
-        #navitem button a {
-            font-size: 48px;
-        }
-
-        #Cart {
-            grid-template-columns: repeat(5, 1fr);
-
-        }
-
-        #cartnav {
-            flex-direction: row;
-        }
-
-        #Order {
-            font-size: 48px;
-        }
-    }
 </style>
 
 <body>
@@ -287,19 +32,18 @@
             </button>
         </div>
         <div id="cartnav">
-            <p>Total items : <span id="cartitems"></span></p>
-            <p>Total Price : <span id="cartprice"></span></p>
+            <p>Total Items : <span id="cartItems"></span></p>
+            <p>Total Price : <span id="cartPrice"></span></p>
         </div>
     </nav>
-    <div id="display"></div>
-    <div id="Cart">
+    <button id="orderBtn" onclick="placeOrder(event)">Order</button>
+    <div id="displayOrderDetail"></div>
+    <div id="cartItem">
 
     </div>
-    <button id="Order" onclick="Placeorder(event)">Order</button>
 
 </body>
-<script src="/Cart.js">
-
+<script src="/cart.js">
 </script>
 
 </html>

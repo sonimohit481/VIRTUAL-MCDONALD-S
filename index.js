@@ -1,4 +1,5 @@
 
+// main data
 let foodItems = [{
     img: "https://images.mcdelivery.co.in/hardcastle-restaurants-pvt-ltd/image/upload/f_auto,q_auto,w_250/v1648698131/Item/6227D.png",
     name: "Classic Burger Meals",
@@ -167,7 +168,6 @@ foodItems.forEach(ele => {
     let btn = document.createElement("button");
     btn.setAttribute("class", "mainBtn");
     btn.innerText = "ADD";
-
     btn.addEventListener("click", () => {
         let initial = {
             id: ele.id,
@@ -178,7 +178,7 @@ foodItems.forEach(ele => {
         }
         Cart.push(initial);
         localStorage.setItem("CartItems", JSON.stringify(Cart));
-        alert("iten added succesfully into the cart");
+        alert(`${ele.name} is added to the cart pleasecheck cart for further queries`);
         btn.style.display = "none";
     })
 
