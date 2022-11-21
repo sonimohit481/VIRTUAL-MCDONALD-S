@@ -141,6 +141,6 @@ function placeOrder(event) {
             Cart = [];
             localStorage.setItem("CartItems", JSON.stringify(Cart));
             window.location.href = "/index.html";
-        }, 3000)
+        }, 4000)
     }, time);
 }
