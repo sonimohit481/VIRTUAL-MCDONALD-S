@@ -43,6 +43,3 @@ Tech Stack : HTML, CSS, JS
   <a href="https://drive.google.com/drive/folders/137nKZRUxLwbuA8yqFRTqw5y3KtEcq3yB?usp=sharing" target="blank"><img align="center" src="https://www.clipartmax.com/png/middle/185-1859226_email-icon-email-open-icon-png.png" alt="mohitsoni481" height="40" width="50" />Resume</a>
  
 </p>
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=sonimohit481&label=Profile%20views&color=0e75b6&style=flat" alt="sonimohit481" /> </p>
-
-<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=sonimohit481" alt="sonimohit481" /></a> </p>
