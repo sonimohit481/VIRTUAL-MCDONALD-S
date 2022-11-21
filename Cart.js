@@ -116,9 +116,9 @@ function placeOrder(event) {
     let img = document.createElement("img");
     img.src = "https://cdn.dribbble.com/users/539024/screenshots/6142362/burger-dribble.gif";
     let msg = document.createElement("p");
-    msg.innerText = `Preparing the Order. 🙏 Please for some time `;
+    msg.innerText = `Preparing the Order. 🙏 Please give us some time `;
     let orderid = document.createElement("p");
-    let id = Math.floor(Math.random() * (999 - 999 + 1) + 999);
+    let id = Math.floor(Math.random() * (9999 + 1) + 999);
     orderid.innerText = "Order no: " + id;
     box.append(img, msg, orderid);
     document.querySelector("#displayOrderDetail").appendChild(box);
