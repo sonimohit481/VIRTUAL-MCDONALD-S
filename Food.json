@@ -19,7 +19,7 @@
         "added_sugars": "1.64g",
         "sodium": "504.19mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2023/01/veg-surprise-burger-1.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/veg-surprise-burger-1.png"
     },
     {
       "id": 2,
@@ -40,7 +40,7 @@
         "added_sugars": "4.07g",
         "sodium": "545.34mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.1-mcaloo-tikki-cheese.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcaloo-tikki-cheese.png"
     },
     {
       "id": 3,
@@ -61,7 +61,7 @@
         "added_sugars": "4.49g",
         "sodium": "706.13mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.3-mc-veggie-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mc-veggie-single.png"
     },
     {
       "id": 4,
@@ -82,7 +82,7 @@
         "added_sugars": "4.49g",
         "sodium": "766.33mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.4-mcchicken-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcchicken-single.png"
     },
     {
       "id": 5,
@@ -103,7 +103,7 @@
         "added_sugars": "5.27g",
         "sodium": "1074.58mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.6-mcspicy-paneer-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcspicy-paneer-single.png"
     },
     {
       "id": 6,
@@ -124,7 +124,7 @@
         "added_sugars": "9.27g",
         "sodium": "1074.58mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.7-mc-spicy-chicken-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mc-spicy-chicken-single.png"
     },
     {
       "id": 7,
@@ -145,7 +145,7 @@
         "added_sugars": "7.27g",
         "sodium": "1024.58mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.8-big-spicy-paneer-wrap-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/big-spicy-paneer-wrap-single.png"
     },
     {
       "id": 8,
@@ -166,7 +166,7 @@
         "added_sugars": "1.08g",
         "sodium": "1114.58mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.9-big-spicy-chicken-wrap.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/big-spicy-chicken-wrap.png"
     },
     {
       "id": 9,
@@ -187,7 +187,7 @@
         "added_sugars": "6.14g",
         "sodium": "1854.71mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.11-maharaja-mac-chicken-single.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/maharaja-mac-chicken-single.png"
     },
     {
       "id": 10,
@@ -208,7 +208,7 @@
         "added_sugars": "1.60g",
         "sodium": "675.00mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.12-mcegg.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcegg.png"
     },
     {
       "id": 11,
@@ -229,7 +229,7 @@
         "added_sugars": "5.08g",
         "sodium": "900.37mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2022/01/paneer-1.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/paneer-1.png"
     },
     {
       "id": 12,
@@ -250,7 +250,7 @@
         "added_sugars": "6.92g",
         "sodium": "1529.22mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/2.10-maharaja-mac-veg.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/maharaja-mac-veg.png"
     },
     {
       "id": 13,
@@ -271,7 +271,7 @@
         "added_sugars": "0.35g",
         "sodium": "390.74mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/3.1-pizza-mcpuff.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/pizza-mcpuff.png"
     },
     {
       "id": 14,
@@ -292,7 +292,7 @@
         "added_sugars": "0.00g",
         "sodium": "313.25mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/3.2-6pcs-chicken-nuggets.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/6pcs-chicken-nuggets.png"
     },
     {
       "id": 15,
@@ -313,7 +313,7 @@
         "added_sugars": "0.00g",
         "sodium": "153.15mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/3.3-fries.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-fries.png"
     },
     {
       "id": 16,
@@ -334,7 +334,7 @@
         "added_sugars": "0.35g",
         "sodium": "390.74mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/3.1-pizza-mcpuff.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-pizza-mcpuff.png"
     },
     {
       "id": 17,
@@ -355,7 +355,7 @@
         "added_sugars": "10.80g",
         "sodium": "80.73mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.1-mcflurry-oreo.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-mcflurry-oreo.png"
     },
     {
       "id": 18,
@@ -376,7 +376,7 @@
         "added_sugars": "13.04g",
         "sodium": "57.80mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.2-mcflurry-oreo-choco-crunch.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/2-mcflurry-oreo-choco-crunch.png"
     },
     {
       "id": 19,
@@ -397,7 +397,7 @@
         "added_sugars": "6.99g",
         "sodium": "40.78mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.3-soft-serve-cone.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-soft-serve-cone.png"
     },
     {
       "id": 20,
@@ -418,7 +418,7 @@
         "added_sugars": "11.31g",
         "sodium": "51.31mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.4-mcswirl-cone.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/4-mcswirl-cone.png"
     },
     {
       "id": 21,
@@ -439,7 +439,7 @@
         "added_sugars": "10.78g",
         "sodium": "65.56mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.5-sundae-chocolate.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/5-sundae-chocolate.png"
     },
     {
       "id": 22,
@@ -460,7 +460,7 @@
         "added_sugars": "12.49g",
         "sodium": "34.51mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.6-sundae-strawberry.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/6-sundae-strawberry.png"
     },
     {
       "id": 23,
@@ -481,7 +481,7 @@
         "added_sugars": "14.39g",
         "sodium": "100.89mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/4.7-sundae-chocolate-browny.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/7-sundae-chocolate-browny.png"
     },
     {
       "id": 24,
@@ -502,7 +502,7 @@
         "added_sugars": "0.00g",
         "sodium": "0.00mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/03/5.1-coffee-large-1.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-coffee-large-1.png"
     },
     {
       "id": 25,
@@ -523,7 +523,7 @@
         "added_sugars": "21.25g",
         "sodium": "175.00mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2022/01/cold-coffee.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/cold-coffee.png"
     },
     {
       "id": 26,
@@ -544,7 +544,7 @@
         "added_sugars": "15.40g",
         "sodium": "30.20mg"
       },
-      "image": "https://mcdindia.com/wp-content/uploads/2020/02/5.3-iced-tea.png"
+      "image": "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-iced-tea.png"
     }
   ]
 }
