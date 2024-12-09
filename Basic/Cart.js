@@ -28,7 +28,7 @@ Cart.map((ele) => {
   let div1 = document.createElement("div");
   let img = document.createElement("img");
   img.src = ele.img;
-  div1.appendChild(image);
+  div1.appendChild(img);
   let div2 = document.createElement("div");
   let name = document.createElement("p");
   name.innerText = "Item: " + ele.name;
