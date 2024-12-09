@@ -11,27 +11,27 @@ Tech Stack : HTML, CSS, JS
 
 ## Mobile view
 
-![Mobile view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/mobal.png)
+![Mobile view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/mobal.png)
 
 ## laptop view
 
-![Laptop view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/laptop.png)
+![Laptop view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/laptop.png)
 
 ## Tv view
 
-![Tv view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/4k.png)
+![Tv view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/4k.png)
 
 ## Cart section
 
-![Cart view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/cartsection.png)
+![Cart view](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/cartsection.png)
 
 ## loding section
 
-![loding](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/loding%20div.png)
+![loding](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/loding%20div.png)
 
 ## order confermation section
 
-![confermation](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/image/placeorder%20order.png)
+![confermation](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/placeorder%20order.png)
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
