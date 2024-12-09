@@ -686,7 +686,7 @@ foodItems.forEach((ele) => {
   btn.addEventListener("click", () => {
     let initial = {
       id: ele.id,
-      img: ele.img,
+      img: ele.image,
       name: ele.name,
       price: ele.price,
       qan: 1,
