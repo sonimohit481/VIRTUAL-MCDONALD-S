@@ -692,6 +692,7 @@ foodItems.forEach((ele) => {
       qan: 1,
     };
     Cart.push(initial);
+    console.log("🚀 ~ btn.addEventListener ~ Cart:", Cart);
     localStorage.setItem("CartItems", JSON.stringify(Cart));
     alert(
       `${ele.name} is added to the cart pleasecheck cart for further queries`
