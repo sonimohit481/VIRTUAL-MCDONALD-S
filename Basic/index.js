@@ -21,7 +21,7 @@ let foodItems = [
       sodium: "504.19mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/veg-surprise-burger-1.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/veg-surprise-burger-1.png",
     price: 732,
     qan: 0,
   },
@@ -46,7 +46,7 @@ let foodItems = [
       sodium: "545.34mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcaloo-tikki-cheese.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mcaloo-tikki-cheese.png",
     price: 485,
     qan: 0,
   },
@@ -71,7 +71,7 @@ let foodItems = [
       sodium: "706.13mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mc-veggie-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mc-veggie-single.png",
     price: 612,
     qan: 0,
   },
@@ -96,7 +96,7 @@ let foodItems = [
       sodium: "766.33mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcchicken-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mcchicken-single.png",
     price: 298,
     qan: 0,
   },
@@ -121,7 +121,7 @@ let foodItems = [
       sodium: "1074.58mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcspicy-paneer-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mcspicy-paneer-single.png",
     price: 843,
     qan: 0,
   },
@@ -146,7 +146,7 @@ let foodItems = [
       sodium: "1074.58mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mc-spicy-chicken-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mc-spicy-chicken-single.png",
     price: 567,
     qan: 0,
   },
@@ -171,7 +171,7 @@ let foodItems = [
       sodium: "1024.58mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/big-spicy-paneer-wrap-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/big-spicy-paneer-wrap-single.png",
     price: 421,
     qan: 0,
   },
@@ -196,7 +196,7 @@ let foodItems = [
       sodium: "1114.58mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/big-spicy-chicken-wrap.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/big-spicy-chicken-wrap.png",
     price: 654,
     qan: 0,
   },
@@ -221,7 +221,7 @@ let foodItems = [
       sodium: "1854.71mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/maharaja-mac-chicken-single.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/maharaja-mac-chicken-single.png",
     price: 789,
     qan: 0,
   },
@@ -246,7 +246,7 @@ let foodItems = [
       sodium: "675.00mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/mcegg.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/mcegg.png",
     price: 234,
     qan: 0,
   },
@@ -271,7 +271,7 @@ let foodItems = [
       sodium: "900.37mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/paneer-1.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/paneer-1.png",
     price: 912,
     qan: 0,
   },
@@ -296,7 +296,7 @@ let foodItems = [
       sodium: "1529.22mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/maharaja-mac-veg.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/maharaja-mac-veg.png",
     price: 678,
     qan: 0,
   },
@@ -321,7 +321,7 @@ let foodItems = [
       sodium: "390.74mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/pizza-mcpuff.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/pizza-mcpuff.png",
     price: 345,
     qan: 0,
   },
@@ -346,7 +346,7 @@ let foodItems = [
       sodium: "313.25mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/6pcs-chicken-nuggets.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/6pcs-chicken-nuggets.png",
     price: 456,
     qan: 0,
   },
@@ -371,7 +371,7 @@ let foodItems = [
       sodium: "153.15mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-fries.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/3-fries.png",
     price: 567,
     qan: 0,
   },
@@ -396,7 +396,7 @@ let foodItems = [
       sodium: "390.74mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-pizza-mcpuff.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/1-pizza-mcpuff.png",
     price: 678,
     qan: 0,
   },
@@ -420,7 +420,7 @@ let foodItems = [
       sodium: "80.73mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-mcflurry-oreo.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/1-mcflurry-oreo.png",
     price: 789,
     qan: 0,
   },
@@ -445,7 +445,7 @@ let foodItems = [
       sodium: "57.80mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/2-mcflurry-oreo-choco-crunch.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/2-mcflurry-oreo-choco-crunch.png",
     price: 890,
     qan: 0,
   },
@@ -469,7 +469,7 @@ let foodItems = [
       sodium: "40.78mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-soft-serve-cone.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/3-soft-serve-cone.png",
     price: 901,
     qan: 0,
   },
@@ -493,7 +493,7 @@ let foodItems = [
       sodium: "51.31mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/4-mcswirl-cone.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/4-mcswirl-cone.png",
     price: 123,
     qan: 0,
   },
@@ -518,7 +518,7 @@ let foodItems = [
       sodium: "65.56mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/5-sundae-chocolate.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/5-sundae-chocolate.png",
     price: 234,
     qan: 0,
   },
@@ -542,7 +542,7 @@ let foodItems = [
       sodium: "34.51mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/6-sundae-strawberry.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/6-sundae-strawberry.png",
     price: 345,
     qan: 0,
   },
@@ -567,7 +567,7 @@ let foodItems = [
       sodium: "100.89mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/7-sundae-chocolate-browny.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/7-sundae-chocolate-browny.png",
     price: 456,
     qan: 0,
   },
@@ -591,7 +591,7 @@ let foodItems = [
       sodium: "0.00mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/1-coffee-large-1.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/1-coffee-large-1.png",
     price: 567,
     qan: 0,
   },
@@ -616,7 +616,7 @@ let foodItems = [
       sodium: "175.00mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/cold-coffee.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/cold-coffee.png",
     price: 678,
     qan: 0,
   },
@@ -640,7 +640,7 @@ let foodItems = [
       sodium: "30.20mg",
     },
     image:
-      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/basic-version/images/3-iced-tea.png",
+      "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/3-iced-tea.png",
     price: 789,
     qan: 0,
   },
