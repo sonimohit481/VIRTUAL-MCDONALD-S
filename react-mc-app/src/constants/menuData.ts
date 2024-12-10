@@ -176,7 +176,7 @@ export const menuData: MenuItem[] = [
   {
     id: 7,
     name: "Spicy Paneer Wrap®",
-    category: "Wrap",
+    category: "Wraps",
     description:
       "Unwrap deliciousness. Tender paneer patty with a fiery, crunchy batter coating; dressed with fresh veggies and seasonings; topped with creamy sauce; and a dash of mustard and melted cheese.",
     serving_size: "250g",
@@ -201,7 +201,7 @@ export const menuData: MenuItem[] = [
   {
     id: 8,
     name: "Spicy Chicken Wrap®",
-    category: "Wrap",
+    category: "Wraps",
     description:
       "Familiar, yet different. Juicy chicken coated with hot and crispy batter; dressed with a fresh salad of lettuce, onions, tomatoes and seasonings. Served with creamy sauce and supple cheese slices.",
     serving_size: "257g",
@@ -226,7 +226,7 @@ export const menuData: MenuItem[] = [
   {
     id: 9,
     name: "Chicken Maharaja Mac®",
-    category: "Burger",
+    category: "Burgers",
     description:
       "A royal treat. A double-decker toasted Maharaja bun sandwiched with one layer of flame-grilled chicken patty; crunchy iceberg lettuce; shredded onion; and a slice of cheese. Topped with another layer of flame-grilled chicken patty; tomato slices; and crunchy iceberg lettuce infused with harberno sauce.",
     serving_size: "296g",
@@ -251,7 +251,7 @@ export const menuData: MenuItem[] = [
   {
     id: 10,
     name: "McEgg®",
-    category: "Burger",
+    category: "Burgers",
     description:
       "Because eggs are great any time of the day. Made with the freshest, warm, off-the-farm egg; steamed to perfection in our specialised steamer; and made tasty with a sprinkling of magic masala. Sandwiched between freshly toasted buns, topped off with creamy mayo and some crunchy onion.",
     serving_size: "115g",
@@ -276,7 +276,7 @@ export const menuData: MenuItem[] = [
   {
     id: 11,
     name: "Butter Paneer Grilled Burger",
-    category: "Burger",
+    category: "Burgers",
     description:
       "Dil se makhani burger. Mildly spiced grilled paneer patty topped with makhani sauce and shredded onions placed between freshly toasted sesame seeded buns.",
     serving_size: "142g",
@@ -301,7 +301,7 @@ export const menuData: MenuItem[] = [
   {
     id: 12,
     name: "Veg Maharaja Mac®",
-    category: "Burger",
+    category: "Burgers",
     description:
       "A feast fit for kings (and queens). A double-decker toasted Maharaja bun sandwiched with one layer of corn & cheese patty; crunchy iceberg lettuce; shredded onion; and a slice of cheese. Topped with another layer of corn & cheese patty; tomato slices; and crunchy iceberg lettuce infused with harberno sauce.",
     serving_size: "306g",
@@ -326,7 +326,7 @@ export const menuData: MenuItem[] = [
   {
     id: 13,
     name: "Pizza McPuff®",
-    category: "Snack",
+    category: "Snacks",
     description:
       "Something different. Something delicious. A blend of assorted vegetables (carrot, beans, capsicum, onion & green peas); mozzarella cheese mixed with tomato sauce; and exotic spices stuffed in rectangle shaped savoury dough. Quick frozen.",
     serving_size: "87g",
@@ -351,7 +351,7 @@ export const menuData: MenuItem[] = [
   {
     id: 14,
     name: "Chicken McNuggets®",
-    category: "Snack",
+    category: "Snacks",
     description:
       "Each bite is better than the last. Bite-sized pieces of breaded, boneless chicken formed in various shapes (Ball, Boot, Bell & Bone) fried and served hot with smoky Barbeque Sauce or Mustard Sauce.",
     serving_size: "64g | 96g | 144g | 320g",
@@ -376,7 +376,7 @@ export const menuData: MenuItem[] = [
   {
     id: 15,
     name: "Our World Famous Fries®",
-    category: "Side",
+    category: "Sides",
     description:
       "The legend among legends. The crisp, craveable, fan favourite: our World Famous Fries®. These epic fries are crispy and golden on the outside and fluffy on the inside.",
     serving_size: "77g | 109g | 154g",
@@ -401,7 +401,7 @@ export const menuData: MenuItem[] = [
   {
     id: 16,
     name: "Pizza McPuff®",
-    category: "Snack",
+    category: "Snacks",
     description:
       "Something different. Something delicious. A blend of assorted vegetables (carrot, beans, capsicum, onion & green peas); mozzarella cheese mixed with tomato sauce; and exotic spices stuffed in rectangle shaped savoury dough. Quick frozen.",
     serving_size: "87g",
@@ -426,7 +426,7 @@ export const menuData: MenuItem[] = [
   {
     id: 17,
     name: "McFlurry (Oreo)®",
-    category: "Dessert",
+    category: "Desserts",
     description: "Milk-based frozen dessert with oreo cookies.",
     serving_size: "86.79g | 147.38g",
     allergens: ["Cereal containing gluten", "Milk", "Soya", "Sulphites"],
@@ -450,7 +450,7 @@ export const menuData: MenuItem[] = [
   {
     id: 18,
     name: "McFlurry (Choco Crunch)®",
-    category: "Dessert",
+    category: "Desserts",
     description:
       "Milk-based frozen dessert with chocolate crispies and chocolate dip.",
     serving_size: "94.29g | 167.38g",
@@ -475,7 +475,7 @@ export const menuData: MenuItem[] = [
   {
     id: 19,
     name: "Soft Serve Cone®",
-    category: "Dessert",
+    category: "Desserts",
     description: "Creamy vanilla soft-serve on a cone.",
     serving_size: "81.29g",
     allergens: ["Cereal containing gluten", "Milk", "Soya"],
@@ -499,7 +499,7 @@ export const menuData: MenuItem[] = [
   {
     id: 20,
     name: "McSwirl Chocolate®",
-    category: "Dessert",
+    category: "Desserts",
     description: "Delightful soft-serve with a delectable chocolate topping.",
     serving_size: "93.29g",
     allergens: ["Cereal containing gluten", "Milk", "Soya"],
@@ -523,7 +523,7 @@ export const menuData: MenuItem[] = [
   {
     id: 21,
     name: "Sundae (Chocolate)®",
-    category: "Dessert",
+    category: "Desserts",
     description:
       "Creamy vanilla soft-serve topped with thick and rich hot fudge.",
     serving_size: "91.79g | 132.08g",
@@ -548,7 +548,7 @@ export const menuData: MenuItem[] = [
   {
     id: 22,
     name: "Sundae (Strawberry)®",
-    category: "Dessert",
+    category: "Desserts",
     description: "Creamy vanilla soft-serve with strawberry topping.",
     serving_size: "91.79g | 132.08g",
     allergens: ["Milk"],
@@ -572,7 +572,7 @@ export const menuData: MenuItem[] = [
   {
     id: 23,
     name: "Sundae (Chocolate Brownie)®",
-    category: "Dessert",
+    category: "Desserts",
     description:
       "An iconic premium dessert option. Can be bought as an add-on to make it a 'full meal' or simply as an indulgence.",
     serving_size: "110.79g | 155.08g",
@@ -597,7 +597,7 @@ export const menuData: MenuItem[] = [
   {
     id: 24,
     name: "Black Coffee®",
-    category: "Beverage",
+    category: "Beverages",
     description: "Perfectly brewed for any time of the day.",
     serving_size: "200ml",
     allergens: [],
@@ -621,7 +621,7 @@ export const menuData: MenuItem[] = [
   {
     id: 25,
     name: "Cold Coffee®",
-    category: "Beverage",
+    category: "Beverages",
     description:
       "A rich smooth creamy cold coffee made with coffee powder and milk.",
     serving_size: "250ml",
@@ -646,7 +646,7 @@ export const menuData: MenuItem[] = [
   {
     id: 26,
     name: "Iced Tea®",
-    category: "Beverage",
+    category: "Beverages",
     description: "A blend of aromatic tea and the fruity flavour of lemon.",
     serving_size: "400ml",
     allergens: [],
@@ -669,4 +669,35 @@ export const menuData: MenuItem[] = [
   },
 ];
 
-export const categories = ["All", "Burgers", "Beverages", "Desserts", "Sides"];
+export const categories = [
+  "All",
+  "Burgers",
+  "Wraps",
+  "Snacks",
+  "Sides",
+  "Desserts",
+  "Beverages",
+];
+
+menuData.forEach((item) => {
+  switch (item.category) {
+    case "Burger":
+      item.category = "Burgers";
+      break;
+    case "Wrap":
+      item.category = "Wraps";
+      break;
+    case "Snack":
+      item.category = "Snacks";
+      break;
+    case "Side":
+      item.category = "Sides";
+      break;
+    case "Dessert":
+      item.category = "Desserts";
+      break;
+    case "Beverage":
+      item.category = "Beverages";
+      break;
+  }
+});
