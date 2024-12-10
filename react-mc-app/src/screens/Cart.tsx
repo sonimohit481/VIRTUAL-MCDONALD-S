@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "../screens/Products";
+import { initializePayment } from "../services/paymentService";
 
 const Cart = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -40,6 +41,22 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  const handleCheckout = async () => {
+    try {
+      // In a real app, you'd get these details from a form or user profile
+      const userDetails = {
+        name: "Test User",
+        email: "test@example.com",
+        phone: "9876543210",
+      };
+
+      await initializePayment(cart, userDetails);
+    } catch (error) {
+      console.error("Checkout failed:", error);
+      alert("Checkout failed. Please try again.");
+    }
   };
 
   if (loading) {
@@ -171,7 +188,7 @@ const Cart = () => {
               </div>
             </div>
             <button
-              onClick={() => alert("Checkout functionality coming soon!")}
+              onClick={handleCheckout}
               className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded"
             >
               Proceed to Checkout
