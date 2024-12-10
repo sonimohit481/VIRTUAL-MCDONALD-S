@@ -3,7 +3,7 @@ import { MenuItem, menuData, categories } from "../constants/menuData";
 import Modal from "../components/Modal";
 
 // Add CartItem interface
-interface CartItem extends MenuItem {
+export interface CartItem extends MenuItem {
   quantity: number;
 }
 
