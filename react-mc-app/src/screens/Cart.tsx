@@ -58,7 +58,7 @@ const Cart = () => {
       const userDetails = {
         name: user.displayName || "Guest",
         email: user.email || "",
-        phone: "9876543210", // You might want to get this from user profile
+        phone: "9999999999", // You might want to get this from user profile
       };
 
       await initializePayment(cart, userDetails);

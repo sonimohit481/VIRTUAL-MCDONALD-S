@@ -27,7 +27,7 @@ googleProvider.setCustomParameters({
 });
 
 // Verify initialization
-console.log("Firebase initialized with config:", {
-  ...firebaseConfig,
-  apiKey: "***", // Hide API key in logs
-});
+// console.log("Firebase initialized with config:", {
+//   ...firebaseConfig,
+//   apiKey: "***", // Hide API key in logs
+// });
