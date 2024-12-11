@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 const Login = () => {
+  const { user, signInWithGoogle, error } = useAuth();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/products");
+    }
+  }, [user, navigate]);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      setLoginError(null);
+      await signInWithGoogle();
+    } catch (error: any) {
+      setLoginError(error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -7,47 +30,27 @@ const Login = () => {
             Sign in to your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6">
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-yellow-500 focus:border-yellow-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
+        {(loginError || error) && (
+          <div
+            className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative"
+            role="alert"
+          >
+            <p className="text-sm">{loginError || error}</p>
           </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-gray-900 bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-            >
-              Sign in
-            </button>
-          </div>
-        </form>
+        )}
+        <div className="mt-8">
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-white hover:bg-gray-50 border-gray-300"
+          >
+            <img
+              className="h-5 w-5 mr-2"
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google logo"
+            />
+            Sign in with Google
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartItem } from "../screens/Products";
 import { initializePayment } from "../services/paymentService";
+import { useAuth } from "../context/AuthContext";
 
 const Cart = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -44,18 +48,26 @@ const Cart = () => {
   };
 
   const handleCheckout = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
     try {
-      // In a real app, you'd get these details from a form or user profile
+      setIsProcessing(true);
       const userDetails = {
-        name: "Test User",
-        email: "test@example.com",
-        phone: "9468209127",
+        name: user.displayName || "Guest",
+        email: user.email || "",
+        phone: "9876543210", // You might want to get this from user profile
       };
 
       await initializePayment(cart, userDetails);
+      // Cart will be cleared in OrderSuccess component
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -189,9 +201,21 @@ const Cart = () => {
             </div>
             <button
               onClick={handleCheckout}
-              className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-3 px-4 rounded"
+              disabled={isProcessing}
+              className={`w-full flex justify-center items-center py-3 px-4 rounded ${
+                isProcessing
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-yellow-400 hover:bg-yellow-500"
+              } text-gray-900 font-bold`}
             >
-              Proceed to Checkout
+              {isProcessing ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900 mr-2"></div>
+                  Processing...
+                </>
+              ) : (
+                "Proceed to Checkout"
+              )}
             </button>
             <Link
               to="/products"

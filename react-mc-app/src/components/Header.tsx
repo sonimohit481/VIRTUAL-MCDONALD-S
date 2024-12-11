@@ -1,11 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   return (
@@ -80,16 +90,51 @@ const Header = () => {
           >
             Cart
           </Link>
+          {user && (
+            <Link
+              to="/orders"
+              className="text-sm font-semibold text-gray-900 hover:text-gray-600"
+            >
+              Orders
+            </Link>
+          )}
         </div>
 
-        {/* Login Button */}
+        {/* Login/Logout Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {user ? (
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                {user.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt={user.displayName || "User"}
+                    className="w-8 h-8 rounded-full"
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center">
+                    {user.displayName?.[0] || user.email?.[0] || "U"}
+                  </div>
+                )}
+                <span className="text-sm text-gray-600">
+                  {user.displayName || user.email}
+                </span>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="text-sm font-semibold text-gray-900 hover:text-gray-600"
+              >
+                Log out
+              </button>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="text-sm font-semibold text-gray-900 hover:text-gray-600"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
 
@@ -118,15 +163,54 @@ const Header = () => {
                   >
                     Cart
                   </Link>
+                  {user && (
+                    <Link
+                      to="/orders"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      onClick={toggleMobileMenu}
+                    >
+                      Orders
+                    </Link>
+                  )}
                 </div>
                 <div className="py-6">
-                  <Link
-                    to="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                    onClick={toggleMobileMenu}
-                  >
-                    Log in
-                  </Link>
+                  {user ? (
+                    <>
+                      <div className="flex items-center gap-2 mb-4">
+                        {user.photoURL ? (
+                          <img
+                            src={user.photoURL}
+                            alt={user.displayName || "User"}
+                            className="w-8 h-8 rounded-full"
+                          />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center">
+                            {user.displayName?.[0] || user.email?.[0] || "U"}
+                          </div>
+                        )}
+                        <span className="text-sm text-gray-600">
+                          {user.displayName || user.email}
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => {
+                          handleLogout();
+                          toggleMobileMenu();
+                        }}
+                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      >
+                        Log out
+                      </button>
+                    </>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                      onClick={toggleMobileMenu}
+                    >
+                      Log in
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,7 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import confetti from "canvas-confetti";
 
 const OrderSuccess = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Clear cart immediately
+    localStorage.setItem("cart", "[]");
+
+    // Trigger confetti
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+
+    // Redirect after delay
+    const timer = setTimeout(() => {
+      navigate("/products");
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <div className="container mx-auto px-4 py-16 text-center">
       <div className="bg-white rounded-lg shadow-md p-8 max-w-md mx-auto">
@@ -21,17 +43,22 @@ const OrderSuccess = () => {
           </svg>
         </div>
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Order Placed Successfully!
+          Order Placed Successfully! 🎉
         </h2>
         <p className="text-gray-600 mb-6">
           Thank you for your order. Your food will be delivered soon.
         </p>
-        <Link
-          to="/products"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
-        >
-          Continue Shopping
-        </Link>
+        <div className="space-y-4">
+          <p className="text-sm text-gray-500">
+            Redirecting to products page in 5 seconds...
+          </p>
+          <Link
+            to="/products"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600"
+          >
+            Continue Shopping
+          </Link>
+        </div>
       </div>
     </div>
   );
