@@ -49,7 +49,7 @@ const Cart = () => {
       const userDetails = {
         name: "Test User",
         email: "test@example.com",
-        phone: "9876543210",
+        phone: "9468209127",
       };
 
       await initializePayment(cart, userDetails);

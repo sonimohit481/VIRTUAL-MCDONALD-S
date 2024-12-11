@@ -40,17 +40,24 @@ export const initializePayment = async (
     const totalAmount = (subtotal + tax + deliveryFee) * 100; // Convert to paise
 
     // Create order on your backend
-    const orderResponse = await fetch("/api/create-order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: totalAmount,
-        cart,
-        userDetails,
-      }),
-    });
+    const orderResponse = await fetch(
+      "https://backend-mc-donald-clone.onrender.com/api/create-order",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: totalAmount,
+          currency: "INR",
+          receipt: `Receipt_${Date.now()}`,
+          notes: {
+            customer_name: userDetails.name,
+            customer_email: userDetails.email,
+          },
+        }),
+      }
+    );
 
     const orderData = await orderResponse.json();
 
@@ -59,28 +66,82 @@ export const initializePayment = async (
     }
 
     // Initialize Razorpay options
-    const options: PaymentOptions = {
-      key: RAZORPAY_KEY_ID,
-      amount: totalAmount,
+    const options: any = {
+      key: RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      amount: totalAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
-      name: "McDonald's Clone",
-      description: `Order payment for ${cart.length} items`,
-      order_id: orderData.id,
-      handler: function (response) {
-        handlePaymentSuccess(response, orderData.id);
+      name: "Mc Donald Clone React", //your business name
+      description: "Demo Transaction",
+      image:
+        "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
+      order_id: orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler: function (response: {
+        razorpay_payment_id: any;
+        razorpay_order_id: any;
+        razorpay_signature: any;
+      }) {
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature);
       },
       prefill: {
         name: userDetails.name,
         email: userDetails.email,
         contact: userDetails.phone,
       },
+      notes: {
+        address: "Razorpay Corporate Office mohittt",
+      },
       theme: {
-        color: "#F59E0B", // Yellow theme color
+        color: "#3399cc",
       },
     };
 
     const razorpay = new (window as any).Razorpay(options);
+    razorpay.on(
+      "payment.failed",
+      function (response: {
+        error: {
+          code: any;
+          description: any;
+          source: any;
+          step: any;
+          reason: any;
+          metadata: { order_id: any; payment_id: any };
+        };
+      }) {
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+      }
+    );
     razorpay.open();
+    // const options: PaymentOptions = {
+    //   key: RAZORPAY_KEY_ID,
+    //   amount: totalAmount,
+    //   currency: "INR",
+    //   name: "McDonald's Clone",
+    //   description: `Order payment for ${cart.length} items`,
+    //   order_id: orderData.id,
+    //   handler: function (response) {
+    //     handlePaymentSuccess(response, orderData.id);
+    //   },
+    //   prefill: {
+    //     name: userDetails.name,
+    //     email: userDetails.email,
+    //     contact: userDetails.phone,
+    //   },
+    //   theme: {
+    //     color: "#F59E0B", // Yellow theme color
+    //   },
+    // };
+
+    // const razorpay = new (window as any).Razorpay(options);
+    // razorpay.open();
   } catch (error) {
     console.error("Payment initialization failed:", error);
     throw error;

@@ -1,5 +1,5 @@
 import Razorpay from "razorpay";
-import crypto from "crypto";
+// import crypto from "crypto";
 
 const razorpay = new Razorpay({
   key_id: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -28,27 +28,27 @@ export const createOrder = async (req: any, res: any) => {
   }
 };
 
-export const verifyPayment = (req: any, res: any) => {
-  try {
-    const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
-      req.body;
+// export const verifyPayment = (req: any, res: any) => {
+//   try {
+//     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } =
+//       req.body;
 
-    const body = razorpay_order_id + "|" + razorpay_payment_id;
-    const expectedSignature = crypto
-      .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!)
-      .update(body.toString())
-      .digest("hex");
+//     const body = razorpay_order_id + "|" + razorpay_payment_id;
+//     const expectedSignature = crypto
+//       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET!)
+//       .update(body.toString())
+//       .digest("hex");
 
-    const isAuthentic = expectedSignature === razorpay_signature;
+//     const isAuthentic = expectedSignature === razorpay_signature;
 
-    if (isAuthentic) {
-      // Save order details to database here
-      res.json({ success: true });
-    } else {
-      res.status(400).json({ success: false });
-    }
-  } catch (error) {
-    console.error("Payment verification failed:", error);
-    res.status(500).json({ success: false });
-  }
-};
+//     if (isAuthentic) {
+//       // Save order details to database here
+//       res.json({ success: true });
+//     } else {
+//       res.status(400).json({ success: false });
+//     }
+//   } catch (error) {
+//     console.error("Payment verification failed:", error);
+//     res.status(500).json({ success: false });
+//   }
+// };
