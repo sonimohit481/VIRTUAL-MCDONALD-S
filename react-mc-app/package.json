@@ -12,12 +12,15 @@
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/canvas-confetti": "^1.6.4",
+    "appwrite": "^16.0.2",
     "canvas-confetti": "^1.9.3",
     "firebase": "^11.0.2",
+    "formik": "^2.4.6",
     "razorpay": "^2.9.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.0.2"
+    "react-router-dom": "^7.0.2",
+    "yup": "^1.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

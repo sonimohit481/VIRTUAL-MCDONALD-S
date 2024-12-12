@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Orders from "./screens/Orders";
 import OrderSuccess from "./screens/OrderSuccess";
 import PrivateRoute from "./components/PrivateRoute";
+import Signup from "./screens/Signup";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               <Route
                 path="/orders"
                 element={
