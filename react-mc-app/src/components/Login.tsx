@@ -26,6 +26,23 @@ export const Login = () => {
       console.error("⚠️ ~ handleSubmit ~ err::", err);
     }
   };
+  const handleGoogleSignIn = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const session = await authService.loginWithGoogle();
+      console.log("🚀 ~ handleGoogleSignIn ~ session:", session)
+      if (session) {
+        const currentUser = await authService.getCurrentUser();
+        console.log("🚀 ~ handleGoogleSignIn ~ currentUser:", currentUser)
+        const currentgooglesession = await authService.getGoogleSession();
+        console.log("🚀 ~ handleGoogleSignIn ~ currentgooglesession:", currentgooglesession)
+        // navigate("/");
+      }
+    } catch (err) {
+      console.error("⚠️ ~ handleSubmit ~ err::", err);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center">
@@ -36,7 +53,7 @@ export const Login = () => {
           </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
+          Log in to your account
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
           Don&apos;t have an account?&nbsp;
@@ -47,6 +64,20 @@ export const Login = () => {
             Sign Up
           </Link>
         </p>
+        <div className="mt-8">
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-gray-900 bg-white hover:bg-gray-50 border-gray-300"
+          >
+            <img
+              className="h-5 w-5 mr-2"
+              src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+              alt="Google logo"
+            />
+            Login in with Google
+          </button>
+        </div>
+        <h2>OR</h2>
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="space-y-5">

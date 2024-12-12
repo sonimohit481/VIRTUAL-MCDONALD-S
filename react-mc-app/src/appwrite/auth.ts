@@ -1,5 +1,5 @@
 import conf from "../conf/conf";
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, OAuthProvider } from "appwrite";
 
 export class AuthService {
   client = new Client();
@@ -57,6 +57,20 @@ export class AuthService {
   }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
+    } catch (error: any) {
+      throw new Error(`Failed to log in: ${error.message}`);
+    }
+  }
+  async loginWithGoogle() {
+    try {
+      return await this.account.createOAuth2Session(OAuthProvider.Google,"http://localhost:5173/","http://localhost:5173/product");
+    } catch (error: any) {
+      throw new Error(`Failed to log in: ${error.message}`);
+    }
+  }
+  async getGoogleSession() {
+    try {
+      return await this.account.getSession('current');
     } catch (error: any) {
       throw new Error(`Failed to log in: ${error.message}`);
     }
