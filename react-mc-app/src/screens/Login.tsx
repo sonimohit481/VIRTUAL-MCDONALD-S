@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Login as LoginComponent } from "../components/Login";
 
 const Login = () => {
-  const { user, signInWithGoogle, error } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState<string | null>(null);
+  // const [loginError, setLoginError] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -14,14 +14,14 @@ const Login = () => {
     }
   }, [user, navigate]);
 
-  const handleGoogleSignIn = async () => {
-    try {
-      setLoginError(null);
-      await signInWithGoogle();
-    } catch (error: any) {
-      setLoginError(error.message);
-    }
-  };
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     setLoginError(null);
+  //     await signInWithGoogle();
+  //   } catch (error: any) {
+  //     setLoginError(error.message);
+  //   }
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

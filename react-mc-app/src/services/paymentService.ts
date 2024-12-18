@@ -132,7 +132,8 @@ export const initializePayment = async (
         "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
       order_id: orderData.id,
       handler: function (response) {
-        handlePaymentSuccess(response, orderData.id);
+        handlePaymentSuccess(response);
+        // handlePaymentSuccess(response, orderData.id);
       },
       prefill: {
         name: userDetails.name,
@@ -151,24 +152,25 @@ export const initializePayment = async (
   }
 };
 
-const handlePaymentSuccess = async (response: any, orderId: string) => {
+const handlePaymentSuccess = async (response: any) => {
+  // const handlePaymentSuccess = async (response: any, orderId: string) => {
   try {
     console.log("first", response);
-    const verifyResponse = await fetch(
-      "https://backend-mc-donald-clone.onrender.com/api/verify-payment",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_order_id: response.razorpay_order_id,
-          razorpay_signature: response.razorpay_signature,
-          order_id: orderId,
-        }),
-      }
-    );
+    // const verifyResponse = await fetch(
+    //   "https://backend-mc-donald-clone.onrender.com/api/verify-payment",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       razorpay_payment_id: response.razorpay_payment_id,
+    //       razorpay_order_id: response.razorpay_order_id,
+    //       razorpay_signature: response.razorpay_signature,
+    //       order_id: orderId,
+    //     }),
+    //   }
+    // );
 
     // const data = await verifyResponse.json();
     // console.log("🚀 ~ asdfasdfasdfadfasdfasdfasdf ~ data:", data);
