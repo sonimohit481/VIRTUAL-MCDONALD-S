@@ -1,26 +1,9 @@
+import { config } from "../config";
+import { PaymentOptions } from "../interface";
 import { CartItem } from "../screens/Products";
-import config from "../config";
 
 const RAZORPAY_KEY_ID = config.razorpay.keyId;
-
-interface PaymentOptions {
-  key: string;
-  amount: number;
-  currency: string;
-  name: string;
-  description: string;
-  image: string;
-  order_id: string;
-  handler: (response: any) => void;
-  prefill: {
-    name: string;
-    email: string;
-    contact: string;
-  };
-  theme: {
-    color: string;
-  };
-}
+const URL = config.api.baseUrl;
 
 export const initializePayment = async (
   cart: CartItem[],
@@ -41,24 +24,21 @@ export const initializePayment = async (
     const totalAmount = (subtotal + tax + deliveryFee) * 100; // Convert to paise
 
     // Create order on your backend
-    const orderResponse = await fetch(
-      "https://67596fc315fa1f09bedf.appwrite.global/api/create-order",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+    const orderResponse = await fetch(`${URL}/create-order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount: totalAmount,
+        currency: "INR",
+        receipt: `Receipt_${Date.now()}`,
+        notes: {
+          customer_name: userDetails.name,
+          customer_email: userDetails.email,
         },
-        body: JSON.stringify({
-          amount: totalAmount,
-          currency: "INR",
-          receipt: `Receipt_${Date.now()}`,
-          notes: {
-            customer_name: userDetails.name,
-            customer_email: userDetails.email,
-          },
-        }),
-      }
-    );
+      }),
+    });
 
     const orderData = await orderResponse.json();
 
@@ -66,61 +46,6 @@ export const initializePayment = async (
       throw new Error("Failed to create order");
     }
 
-    // Initialize Razorpay options
-    // const options: any = {
-    //   key: RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
-    //   amount: totalAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    //   currency: "INR",
-    //   name: "Mc Donald Clone React", //your business name
-    //   description: "Demo Transaction",
-    //   image:
-    //     "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
-    //   order_id: orderData.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-    //   handler: function (response: {
-    //     razorpay_payment_id: any;
-    //     razorpay_order_id: any;
-    //     razorpay_signature: any;
-    //   }) {
-    //     alert(response.razorpay_payment_id);
-    //     alert(response.razorpay_order_id);
-    //     alert(response.razorpay_signature);
-    //   },
-    //   prefill: {
-    //     name: userDetails.name,
-    //     email: userDetails.email,
-    //     contact: userDetails.phone,
-    //   },
-    //   notes: {
-    //     address: "Razorpay Corporate Office mohittt",
-    //   },
-    //   theme: {
-    //     color: "#3399cc",
-    //   },
-    // };
-
-    // const razorpay = new (window as any).Razorpay(options);
-    // razorpay.on(
-    //   "payment.failed",
-    //   function (response: {
-    //     error: {
-    //       code: any;
-    //       description: any;
-    //       source: any;
-    //       step: any;
-    //       reason: any;
-    //       metadata: { order_id: any; payment_id: any };
-    //     };
-    //   }) {
-    //     alert(response.error.code);
-    //     alert(response.error.description);
-    //     alert(response.error.source);
-    //     alert(response.error.step);
-    //     alert(response.error.reason);
-    //     alert(response.error.metadata.order_id);
-    //     alert(response.error.metadata.payment_id);
-    //   }
-    // );
-    // razorpay.open();
     const options: PaymentOptions = {
       key: RAZORPAY_KEY_ID,
       amount: totalAmount,
@@ -132,8 +57,7 @@ export const initializePayment = async (
         "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
       order_id: orderData.id,
       handler: function (response) {
-        handlePaymentSuccess(response);
-        // handlePaymentSuccess(response, orderData.id);
+        handlePaymentSuccess(response, orderData.id);
       },
       prefill: {
         name: userDetails.name,
@@ -141,7 +65,7 @@ export const initializePayment = async (
         contact: userDetails.phone,
       },
       theme: {
-        color: "#F59E0B", // Yellow theme color
+        color: "#F5Ca0B",
       },
     };
 
@@ -152,39 +76,34 @@ export const initializePayment = async (
   }
 };
 
-const handlePaymentSuccess = async (response: any) => {
-  // const handlePaymentSuccess = async (response: any, orderId: string) => {
+const handlePaymentSuccess = async (response: any, orderId: string) => {
   try {
-    console.log("first", response);
-    // const verifyResponse = await fetch(
-    //   "https://backend-mc-donald-clone.onrender.com/api/verify-payment",
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       razorpay_payment_id: response.razorpay_payment_id,
-    //       razorpay_order_id: response.razorpay_order_id,
-    //       razorpay_signature: response.razorpay_signature,
-    //       order_id: orderId,
-    //     }),
-    //   }
-    // );
+    const verifyResponse = await fetch(`${URL}/verify-payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        razorpay_payment_id: response.razorpay_payment_id,
+        razorpay_order_id: response.razorpay_order_id,
+        razorpay_signature: response.razorpay_signature,
+        order_id: orderId,
+      }),
+    });
 
-    // const data = await verifyResponse.json();
-    // console.log("🚀 ~ asdfasdfasdfadfasdfasdfasdf ~ data:", data);
+    const data = await verifyResponse.json();
     if (true) {
-      // if (data.success) {
-      // Clear cart and redirect to success page
-      // localStorage.setItem("cart", "[]");
-      window.location.href = "/order-success";
-    } else {
-      throw new Error("Payment verification failed");
+      if (data.verified) {
+        // Clear cart and redirect to success page
+        localStorage.setItem("cart", "[]");
+        window.location.href = "/products";
+      } else {
+        throw new Error("Payment verification failed");
+      }
     }
   } catch (error) {
     console.error("Payment verification failed:", error);
     alert("Payment verification failed!!");
-    // window.location.href = "/order-failed";
+    window.location.href = "/order-failed";
   }
 };
