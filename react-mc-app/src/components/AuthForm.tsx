@@ -86,7 +86,7 @@ const AuthForm = () => {
                     formik.touched.name && formik.errors.name
                       ? "border-red-500"
                       : "border-gray-300"
-                  } text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                  } text-sm rounded-lg focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                   placeholder="Your name"
                 />
                 {formik.touched.name && formik.errors.name && (
@@ -114,7 +114,7 @@ const AuthForm = () => {
                   formik.touched.email && formik.errors.email
                     ? "border-red-500"
                     : "border-gray-300"
-                } text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                } text-sm rounded-lg focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                 placeholder="name@company.com"
               />
               {formik.touched.email && formik.errors.email && (
@@ -141,7 +141,7 @@ const AuthForm = () => {
                   formik.touched.password && formik.errors.password
                     ? "border-red-500"
                     : "border-gray-300"
-                } text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
+                } text-sm rounded-lg focus:ring-yellow-600 focus:border-yellow-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white`}
                 placeholder="••••••••"
               />
               {formik.touched.password && formik.errors.password && (
@@ -152,7 +152,7 @@ const AuthForm = () => {
             </div>
             <button
               type="submit"
-              className="w-full text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700"
+              className="w-full text-white bg-yellow-600 hover:bg-yellow-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700"
               disabled={formik.isSubmitting || isLoading}
             >
               {isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Log In"}
@@ -186,7 +186,7 @@ const AuthForm = () => {
             {isSignUp ? "Already have an account?" : "Don't have an account?"}
             <span
               onClick={() => setIsSignUp((pre) => !pre)}
-              className="font-medium text-blue-600 hover:underline dark:text-blue-500 ml-1 cursor-pointer"
+              className="font-medium text-yellow-600 hover:underline dark:text-yellow-500 ml-1 cursor-pointer"
             >
               {isSignUp ? " Log in here" : " Sign up here"}
             </span>

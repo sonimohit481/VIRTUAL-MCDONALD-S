@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import { AuthProvider } from "./context/AuthContext";
-import { Auth, Cart, Home, NotFound, Products } from "./screens";
+import { Auth, Cart, Home, NotFound, Orders, Products } from "./screens";
+import { PrivateRoute } from "./components";
 
 export default function App() {
   return (
@@ -17,17 +18,14 @@ export default function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/404" element={<NotFound />} />
-              {/* <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} /> */}
-              {/* <Route
+              <Route
                 path="/orders"
                 element={
                   <PrivateRoute>
                     <Orders />
                   </PrivateRoute>
                 }
-              /> */}
-              {/* <Route path="/order-success" element={<OrderSuccess />} /> */}
+              />
             </Routes>
           </main>
         </div>
