@@ -1,11 +1,14 @@
 import conf from "../conf/conf";
 import { Client, Account, ID, OAuthProvider } from "appwrite";
+import { LogInForm } from "../interface";
 
 export class AuthService {
-  client = new Client();
-  account;
+  private client: Client;
+  private account: Account;
 
   constructor() {
+    this.client = new Client();
+
     try {
       this.client
         .setEndpoint(conf.appwriteUrl)
@@ -13,19 +16,11 @@ export class AuthService {
 
       this.account = new Account(this.client);
     } catch (error: any) {
-      throw new Error(`Failed to initialize AuthService: ${error?.message}`);
+      throw new Error(`!! Failed to initialize AuthService: ${error?.message}`);
     }
   }
 
-  async createAccount({
-    email,
-    password,
-    name,
-  }: {
-    email: any;
-    password: any;
-    name: any;
-  }) {
+  async createAccount({ email, password, name }: LogInForm) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
@@ -35,44 +30,42 @@ export class AuthService {
       );
 
       if (userAccount) {
-        console.log(
-          "🚀 ~ AuthService ~ createAccount ~ userAccount:",
-          userAccount
-        );
-        return await this.loginEmailPassword({ email, password });
+        return await this.loginWithEmailAndPassword({ email, password });
       } else {
-        throw new Error("Failed to create user account");
+        throw new Error("!! Failed to create user account");
       }
     } catch (error: any) {
-      throw new Error(`Failed to create account: ${error.message} asdf`);
+      throw new Error(`!! Failed to create account: ${error.message}`);
     }
   }
 
-  async loginEmailPassword({
-    email,
-    password,
-  }: {
-    email: string;
-    password: string;
-  }) {
+  async loginWithEmailAndPassword({ email, password }: LogInForm) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error: any) {
-      throw new Error(`Failed to log in: ${error.message}`);
+      throw new Error(`!! Failed to log in: ${error.message}`);
     }
   }
+
   async loginWithGoogle() {
     try {
-      return await this.account.createOAuth2Session(OAuthProvider.Google,"http://localhost:5173/","http://localhost:5173/product");
+      return await this.account.createOAuth2Session(
+        OAuthProvider.Google,
+        conf.googleRedirectUrl,
+        conf.googleCallbackUrl
+      );
     } catch (error: any) {
-      throw new Error(`Failed to log in: ${error.message}`);
+      throw new Error(`!! Failed to log in with Google: ${error.message}`);
     }
   }
-  async getGoogleSession() {
+
+  async getCurrentSession() {
     try {
-      return await this.account.getSession('current');
+      return await this.account.getSession("current");
     } catch (error: any) {
-      throw new Error(`Failed to log in: ${error.message}`);
+      throw new Error(
+        `!! Failed to retrieve the current session: ${error.message}`
+      );
     }
   }
 
@@ -80,7 +73,7 @@ export class AuthService {
     try {
       return await this.account.get();
     } catch (error: any) {
-      throw new Error(`Failed to get current user: ${error.message}`);
+      throw new Error(`!! Failed to get the current user: ${error.message}`);
     }
   }
 
@@ -88,7 +81,7 @@ export class AuthService {
     try {
       return await this.account.deleteSessions();
     } catch (error: any) {
-      throw new Error(`Failed to logout: ${error.message}`);
+      throw new Error(`!! Failed to logout: ${error.message}`);
     }
   }
 }

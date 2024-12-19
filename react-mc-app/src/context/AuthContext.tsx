@@ -1,85 +1,102 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  signInWithPopup,
-  onAuthStateChanged,
-  signOut,
-  User,
-} from "firebase/auth";
-import { auth, googleProvider } from "../config/firebase";
+import authService from "../appwrite/auth";
+import { LogInForm } from "../interface";
 
 interface AuthContextType {
-  user: User | null;
-  loading: boolean;
+  user: LogInForm | null;
+  isLoading: boolean;
   error: string | null;
   signInWithGoogle: () => Promise<void>;
+  loginWithEmailAndPassword: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<LogInForm | null | any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (user) => {
-        setUser(user);
-        setLoading(false);
-      },
-      (error) => {
-        console.error("Auth state change error:", error);
-        setError(error.message);
-        setLoading(false);
+    const fetchUser = async () => {
+      setIsLoading(true);
+      try {
+        const currentUser = await authService.getCurrentUser();
+        setUser(currentUser);
+      } catch (error: any) {
+        console.error("!! Error fetching current user:", error.message);
+        setUser(null);
+      } finally {
+        setIsLoading(false);
       }
-    );
-
-    // Auto logout after 1 hour
-    const autoLogoutTimer = setTimeout(() => {
-      if (user) {
-        signOut(auth);
-      }
-    }, 3600000);
-
-    return () => {
-      unsubscribe();
-      clearTimeout(autoLogoutTimer);
     };
-  }, [user]);
+
+    fetchUser();
+  }, []);
 
   const signInWithGoogle = async () => {
     try {
       setError(null);
-      setLoading(true);
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log("Sign in successful:", result.user);
+      setIsLoading(true);
+      await authService.loginWithGoogle();
+      const currentUser = await authService.getCurrentUser();
+      setUser(currentUser);
     } catch (error: any) {
-      console.error("Error signing in with Google:", error);
+      console.error("!! Error signing in with Google:", error.message);
       setError(error.message);
       throw error;
     } finally {
-      setLoading(false);
+      setIsLoading(false);
+    }
+  };
+
+  const loginWithEmailAndPassword = async (email: string, password: string) => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      await authService.loginWithEmailAndPassword({ email, password });
+      const currentUser = await authService.getCurrentUser();
+      setUser(currentUser);
+    } catch (error: any) {
+      console.error(
+        "!! Error logging in with email and password:",
+        error.message
+      );
+      setError(error.message);
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const logout = async () => {
     try {
       setError(null);
-      await signOut(auth);
+      setIsLoading(true);
+      await authService.logout();
+      setUser(null);
     } catch (error: any) {
-      console.error("Error signing out:", error);
+      console.error("!! Error logging out:", error.message);
       setError(error.message);
       throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, error, signInWithGoogle, logout }}
+      value={{
+        user,
+        isLoading,
+        error,
+        signInWithGoogle,
+        loginWithEmailAndPassword,
+        logout,
+      }}
     >
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };
@@ -87,7 +104,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error("!! useAuth must be used within an AuthProvider");
   }
   return context;
 };
