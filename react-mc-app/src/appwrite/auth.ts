@@ -1,6 +1,6 @@
-import conf from "../conf/conf";
 import { Client, Account, ID, OAuthProvider } from "appwrite";
 import { LogInForm } from "../interface";
+import { config } from "../config";
 
 export class AuthService {
   private client: Client;
@@ -11,8 +11,8 @@ export class AuthService {
 
     try {
       this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
+        .setEndpoint(config.appwrite.appwriteUrl)
+        .setProject(config.appwrite.appwriteProjectId);
 
       this.account = new Account(this.client);
     } catch (error: any) {
@@ -51,8 +51,8 @@ export class AuthService {
     try {
       return await this.account.createOAuth2Session(
         OAuthProvider.Google,
-        conf.googleRedirectUrl,
-        conf.googleCallbackUrl
+        config.google.googleRedirectUrl,
+        config.google.googleCallbackUrl
       );
     } catch (error: any) {
       throw new Error(`!! Failed to log in with Google: ${error.message}`);
