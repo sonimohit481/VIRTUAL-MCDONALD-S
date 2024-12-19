@@ -11,23 +11,23 @@ export default function App() {
       <Router>
         <div className="min-h-screen bg-gray-50">
           <Header />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/404" element={<NotFound />} />
-              <Route
-                path="/orders"
-                element={
-                  <PrivateRoute>
-                    <Orders />
-                  </PrivateRoute>
-                }
-              />
-            </Routes>
-          </main>
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route
+              path="/orders"
+              element={
+                <PrivateRoute>
+                  <Orders />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
         </div>
       </Router>
     </AuthProvider>

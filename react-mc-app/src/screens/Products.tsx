@@ -2,12 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 
 import { menuData, categories } from "../constants/menuData";
 import Modal from "../components/Modal";
-import { MenuItem } from "../interface";
-
-// Add CartItem interface
-export interface CartItem extends MenuItem {
-  quantity: number;
-}
+import { CartItem, MenuItem } from "../interface";
 
 // Helper function remains the same
 const getCategoryDescription = (category: string): string => {

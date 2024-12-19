@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import authService from "../appwrite/auth";
-import { LogInForm } from "../interface";
+import { UserSession } from "../interface";
 
 interface AuthContextType {
-  user: LogInForm | null;
+  user: UserSession | null;
   isLoading: boolean;
   error: string | null;
   signInWithGoogle: () => Promise<void>;
@@ -14,7 +14,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<LogInForm | null | any>(null);
+  const [user, setUser] = useState<UserSession | null | any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

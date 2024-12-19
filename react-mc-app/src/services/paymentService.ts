@@ -1,6 +1,5 @@
 import { config } from "../config";
-import { PaymentOptions } from "../interface";
-import { CartItem } from "../screens/Products";
+import { CartItem, PaymentOptions } from "../interface";
 
 const RAZORPAY_KEY_ID = config.razorpay.keyId;
 const URL = config.api.baseUrl;
@@ -52,7 +51,7 @@ export const initializePayment = async (
       currency: "INR",
 
       description: `Order payment for ${cart.length} items`,
-      name: "Mc Donald Clone React", //your business name
+      name: "Mc Donald Clone React",
       image:
         "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
       order_id: orderData.id,

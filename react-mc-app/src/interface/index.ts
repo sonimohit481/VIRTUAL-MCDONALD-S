@@ -59,6 +59,10 @@ export interface MenuItem {
   qan: number;
 }
 
+export interface CartItem extends MenuItem {
+  quantity: number;
+}
+
 export interface PaymentOptions {
   key: string;
   amount: number;

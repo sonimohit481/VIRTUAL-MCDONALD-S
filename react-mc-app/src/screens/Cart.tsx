@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { CartItem } from "../screens/Products";
+
 import { initializePayment } from "../services/paymentService";
+import { useAuth } from "../context/AuthContext";
+import { CartItem } from "../interface";
 
 // import { useAuth } from "../context/AuthContext";
 
 const Cart = () => {
-  // const { user } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -49,19 +51,17 @@ const Cart = () => {
   };
 
   const handleCheckout = async () => {
-    // if (!user) {
-    //   navigate("/login");
-    //   return;
-    // }
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
     try {
       setIsProcessing(true);
       const userDetails = {
-        name: "Guest",
-        email: "teat@gamoi.com",
-        // name: user.displayName || "Guest",
-        // email: user.email || "",
-        phone: "9999999999", // You might want to get this from user profile
+        name: user.name || "Guest",
+        email: user.email || "temp@temp.com",
+        phone: "0987654321", // You might want to get this from user profile
       };
 
       await initializePayment(cart, userDetails);
