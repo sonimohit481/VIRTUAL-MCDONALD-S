@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await logout();
+  //   } catch (error) {
+  //     console.error("Error logging out:", error);
+  //   }
+  // };
 
   return (
     <header className="bg-white shadow-sm">
@@ -90,19 +90,19 @@ const Header = () => {
           >
             Cart
           </Link>
-          {user && (
+          {/* {user && (
             <Link
               to="/orders"
               className="text-sm font-semibold text-gray-900 hover:text-gray-600"
             >
               Orders
             </Link>
-          )}
+          )} */}
         </div>
 
         {/* Login/Logout Button */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {user ? (
+          {/* {user ? (
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 {user.photoURL ? (
@@ -134,7 +134,13 @@ const Header = () => {
             >
               Log in <span aria-hidden="true">&rarr;</span>
             </Link>
-          )}
+          )} */}
+          <Link
+            to="/login"
+            className="text-sm font-semibold text-gray-900 hover:text-gray-600"
+          >
+            Log in <span aria-hidden="true">&rarr;</span>
+          </Link>
         </div>
       </nav>
 
@@ -163,7 +169,7 @@ const Header = () => {
                   >
                     Cart
                   </Link>
-                  {user && (
+                  {/* {user && (
                     <Link
                       to="/orders"
                       className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
@@ -171,10 +177,10 @@ const Header = () => {
                     >
                       Orders
                     </Link>
-                  )}
+                  )} */}
                 </div>
                 <div className="py-6">
-                  {user ? (
+                  {/* {user ? (
                     <>
                       <div className="flex items-center gap-2 mb-4">
                         {user.photoURL ? (
@@ -210,7 +216,14 @@ const Header = () => {
                     >
                       Log in
                     </Link>
-                  )}
+                  )} */}
+                  <Link
+                    to="/auth"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
+                    onClick={toggleMobileMenu}
+                  >
+                    Log in
+                  </Link>
                 </div>
               </div>
             </div>
