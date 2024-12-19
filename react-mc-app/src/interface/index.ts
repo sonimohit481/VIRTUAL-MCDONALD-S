@@ -34,3 +34,46 @@ export interface LogInForm {
   email: string;
   password: string;
 }
+
+export interface MenuItem {
+  id: number;
+  name: string;
+  category: string;
+  description: string;
+  serving_size: string;
+  allergens: string[];
+  nutrition: {
+    energy: string;
+    protein: string;
+    total_fat: string;
+    saturated_fat: string;
+    trans_fat: string;
+    cholesterol: string;
+    total_carbohydrates: string;
+    total_sugars: string;
+    added_sugars: string;
+    sodium: string;
+  };
+  image: string;
+  price: number;
+  qan: number;
+}
+
+export interface PaymentOptions {
+  key: string;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  image: string;
+  order_id: string;
+  handler: (response: any) => void;
+  prefill: {
+    name: string;
+    email: string;
+    contact: string;
+  };
+  theme: {
+    color: string;
+  };
+}
