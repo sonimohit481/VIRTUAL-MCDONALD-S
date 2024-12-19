@@ -1,25 +1,48 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Link } from "react-router-dom";
-// import { useAuth } from "../context/AuthContext";
+import { GiHamburger } from "react-icons/gi";
+import { IoMdLogIn, IoIosCart, IoMdLogOut } from "react-icons/io";
+
+import { useAuth } from "../context/AuthContext";
+
+const Links = ({
+  to,
+  title,
+  icon,
+}: {
+  to: string;
+  title: string;
+  icon: ReactNode;
+}) => {
+  return (
+    <Link
+      to={`/${to}`}
+      className="text-sm flex flex-row mx-1 justify-center items-center font-semibold text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300"
+    >
+      {icon && <div className="mx-2">{icon}</div>}
+      <div className="hidden md:block">{title.toLocaleUpperCase()}</div>
+    </Link>
+  );
+};
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // const { user, logout } = useAuth();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { user, logout } = useAuth();
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleProfileMenu = () => {
+    setIsProfileOpen(!isProfileOpen);
   };
 
-  // const handleLogout = async () => {
-  //   try {
-  //     await logout();
-  //   } catch (error) {
-  //     console.error("Error logging out:", error);
-  //   }
-  // };
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="bg-white shadow-sm dark:bg-gray-800">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
@@ -36,200 +59,79 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={toggleMobileMenu}
-          >
-            <span className="sr-only">Toggle menu</span>
-            {!isMobileMenuOpen ? (
-              <svg
-                className="size-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="size-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
-
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:gap-x-12">
-          <Link
-            to="/products"
-            className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-          >
-            Products
-          </Link>
-          <Link
-            to="/cart"
-            className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-          >
-            Cart
-          </Link>
-          {/* {user && (
-            <Link
-              to="/orders"
-              className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-            >
-              Orders
-            </Link>
-          )} */}
-        </div>
+        <div className=" flex lg:gap-x-12 flex-row">
+          <Links
+            icon={<GiHamburger size={24} color="#F5Ca0B" />}
+            title="products"
+            to="products"
+          />
+          <Links
+            icon={<IoIosCart size={24} color="#F5Ca0B" />}
+            title="cart"
+            to="cart"
+          />
 
-        {/* Login/Logout Button */}
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {/* {user ? (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt={user.displayName || "User"}
-                    className="w-8 h-8 rounded-full"
-                  />
-                ) : (
-                  <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center">
-                    {user.displayName?.[0] || user.email?.[0] || "U"}
-                  </div>
-                )}
-                <span className="text-sm text-gray-600">
-                  {user.displayName || user.email}
-                </span>
-              </div>
-              <button
-                onClick={handleLogout}
-                className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-              >
-                Log out
-              </button>
-            </div>
+          {!user ? (
+            <Links
+              icon={<IoMdLogIn size={24} color="#F5Ca0B" />}
+              title="login"
+              to="auth"
+            />
           ) : (
-            <Link
-              to="/login"
-              className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
-          )} */}
-          <Link
-            to="/login"
-            className="text-sm font-semibold text-gray-900 hover:text-gray-600"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+            <div className="relative ml-3">
+              <div>
+                <button
+                  type="button"
+                  onClick={toggleProfileMenu}
+                  className="relative flex rounded-full bg-gray-200 dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  id="user-menu-button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span className="absolute -inset-1.5"></span>
+                  <span className="sr-only">Open user menu</span>
+                  <img
+                    className="size-8 rounded-full"
+                    src="https://fs-assets-fs.s3-us-west-2.amazonaws.com/res/img/2021/04/bWjMbx6FQXuDmF2PJbEj_dummy.png"
+                    alt=""
+                  />
+                </button>
+              </div>
+
+              {isProfileOpen && (
+                <div
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-none"
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="user-menu-button"
+                  tabIndex={-1}
+                >
+                  <Link
+                    to="/orders"
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600"
+                    role="menuitem"
+                    tabIndex={-1}
+                    id="user-menu-item-0"
+                  >
+                    Your Orders
+                  </Link>
+
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 text-sm text-gray-700 bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800 flex justify-start items-center flex-row w-full"
+                  >
+                    Sign out
+                    <div className="mx-2">
+                      <IoMdLogOut size={24} color="#F5Ca0B" />
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </nav>
-
-      {/* Mobile menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div
-            className="fixed inset-0 z-10 bg-black bg-opacity-25"
-            onClick={toggleMobileMenu}
-          ></div>
-          <div className="fixed inset-y-0 right-0 z-20 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-gray-500/10">
-                <div className="space-y-2 py-6">
-                  <Link
-                    to="/products"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                    onClick={toggleMobileMenu}
-                  >
-                    Products
-                  </Link>
-                  <Link
-                    to="/cart"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                    onClick={toggleMobileMenu}
-                  >
-                    Cart
-                  </Link>
-                  {/* {user && (
-                    <Link
-                      to="/orders"
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                      onClick={toggleMobileMenu}
-                    >
-                      Orders
-                    </Link>
-                  )} */}
-                </div>
-                <div className="py-6">
-                  {/* {user ? (
-                    <>
-                      <div className="flex items-center gap-2 mb-4">
-                        {user.photoURL ? (
-                          <img
-                            src={user.photoURL}
-                            alt={user.displayName || "User"}
-                            className="w-8 h-8 rounded-full"
-                          />
-                        ) : (
-                          <div className="w-8 h-8 rounded-full bg-yellow-200 flex items-center justify-center">
-                            {user.displayName?.[0] || user.email?.[0] || "U"}
-                          </div>
-                        )}
-                        <span className="text-sm text-gray-600">
-                          {user.displayName || user.email}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          handleLogout();
-                          toggleMobileMenu();
-                        }}
-                        className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        Log out
-                      </button>
-                    </>
-                  ) : (
-                    <Link
-                      to="/login"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                      onClick={toggleMobileMenu}
-                    >
-                      Log in
-                    </Link>
-                  )} */}
-                  <Link
-                    to="/auth"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-900 hover:bg-gray-50"
-                    onClick={toggleMobileMenu}
-                  >
-                    Log in
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </header>
   );
 };
