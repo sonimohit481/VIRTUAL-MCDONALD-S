@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { initializePayment } from "../services/paymentService";
+import {
+  initializePayment,
+  processOrder,
+  verifyPayment,
+} from "../services/paymentService";
 import { useAuth } from "../context/AuthContext";
 import { CartItem } from "../interface";
-
-// import { useAuth } from "../context/AuthContext";
+import { PaymentModal } from "../components";
 
 const Cart = () => {
   const { user } = useAuth();
+  console.log("🚀 ~ Cart ~ user:", user);
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [modalType, setModalType] = useState<
+    "preparing" | "verified" | "failed"
+  >("preparing");
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -52,20 +61,62 @@ const Cart = () => {
 
   const handleCheckout = async () => {
     if (!user) {
-      navigate("/login");
+      navigate("/auth");
       return;
     }
 
     try {
       setIsProcessing(true);
+
       const userDetails = {
         name: user.name || "Guest",
         email: user.email || "temp@temp.com",
-        phone: "0987654321", // You might want to get this from user profile
+        phone: "0987654321",
       };
 
-      await initializePayment(cart, userDetails);
-      // Cart will be cleared in OrderSuccess component
+      await initializePayment(cart, userDetails, async (response, orderId) => {
+        setShowModal(true);
+        setModalMessage("Verifying payment...");
+        setModalType("preparing");
+        setIsProcessing(false);
+
+        // Show animation for payment verification
+        try {
+          const verified = await new Promise(
+            (resolve) =>
+              setTimeout(
+                async () => resolve(await verifyPayment(response, orderId)),
+                2000
+              ) // Simulate delay
+          );
+
+          if (verified) {
+            setModalMessage("Payment verified! Processing your order...");
+            setModalType("verified");
+            setTimeout(async () => {
+              await processOrder(cart, user.$id);
+              setModalMessage("Order placed successfully!");
+              setCart([]);
+              localStorage.setItem("cart", "[]");
+
+              // Redirect after a delay
+              setTimeout(() => {
+                setShowModal(false);
+                navigate("/orders"); // Adjust to your orders page or desired route
+              }, 3000);
+            }, 2000);
+          } else {
+            setModalMessage("Payment verification failed! Please try again.");
+            setModalType("failed");
+            setTimeout(() => setShowModal(false), 3000);
+          }
+        } catch (error) {
+          console.error("Verification error:", error);
+          setModalMessage("An error occurred during payment verification.");
+          setModalType("failed");
+          setTimeout(() => setShowModal(false), 3000);
+        }
+      });
     } catch (error) {
       console.error("Checkout failed:", error);
       alert("Checkout failed. Please try again.");
@@ -105,6 +156,13 @@ const Cart = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <PaymentModal
+        isVisible={showModal}
+        message={modalMessage}
+        type={modalType}
+        onClose={() => setShowModal(false)}
+      />
+
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
         <button

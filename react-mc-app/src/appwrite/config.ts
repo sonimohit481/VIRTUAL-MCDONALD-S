@@ -14,16 +14,17 @@ export class Service {
 
   async createOrder({
     userId,
-    items,
+    itemNames,
+    totalItems,
     total,
     status,
   }: {
     userId: string;
-    items: any;
+    itemNames: string;
+    totalItems: number;
     total: number;
     status: string;
   }) {
-    const itemsString = JSON.stringify(items);
     try {
       return await this.databases.createDocument(
         config.appwrite.appwriteDatabaseId,
@@ -31,7 +32,8 @@ export class Service {
         ID.unique(),
         {
           userId,
-          items: itemsString,
+          itemNames,
+          totalItems,
           total,
           status,
           createdAt: new Date().toISOString(),

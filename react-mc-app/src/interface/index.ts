@@ -81,3 +81,10 @@ export interface PaymentOptions {
     color: string;
   };
 }
+
+export interface PaymentModalProps {
+  isVisible: boolean;
+  message: string;
+  type: "preparing" | "verified" | "failed";
+  onClose: () => void;
+}

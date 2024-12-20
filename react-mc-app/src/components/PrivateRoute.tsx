@@ -9,7 +9,8 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const { user } = useAuth();
 
   if (!user) {
-    return <Navigate to="/login" />;
+    console.log("🚀 ~ PrivateRoute ~ user:", user);
+    return <Navigate to="/auth" />;
   }
 
   return <>{children}</>;
