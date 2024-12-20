@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
+import orderService from "../appwrite/config";
+
 interface Order {
   id: string;
-  items: any[];
+  items: { name: string; quantity: number; price: number }[];
   total: number;
   status: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 const Orders = () => {
@@ -17,30 +18,40 @@ const Orders = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // const fetchOrders = async () => {
-    //   if (!user) return;
-    //   try {
-    //     const ordersRef = collection(db, "orders");
-    //     const q = query(
-    //       ordersRef,
-    //       where("userId", "==", user.uid),
-    //       orderBy("createdAt", "desc")
-    //     );
-    //     const querySnapshot = await getDocs(q);
-    //     const orderData = querySnapshot.docs.map((doc) => ({
-    //       id: doc.id,
-    //       ...doc.data(),
-    //       createdAt: doc.data().createdAt.toDate(),
-    //     })) as Order[];
-    //     setOrders(orderData);
-    //   } catch (error) {
-    //     console.error("Error fetching orders:", error);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-    // fetchOrders();
+    const fetchOrders = async () => {
+      if (!user) return;
+      try {
+        const orderData = await orderService.getOrdersByUser(user.$id);
+        setOrders(
+          orderData.map((order: any) => ({
+            ...order,
+            createdAt: new Date(order.createdAt),
+          }))
+        );
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrders();
   }, [user]);
+
+  const deleteOrder = async (orderId: string) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this order?"
+    );
+    if (confirmed) {
+      const success = await orderService.deleteOrder(orderId);
+      if (success) {
+        setOrders((prevOrders) =>
+          prevOrders.filter((order) => order.id !== orderId)
+        );
+      } else {
+        alert("Failed to delete the order. Try again.");
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -66,7 +77,7 @@ const Orders = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
               />
             </svg>
           </div>
@@ -88,20 +99,29 @@ const Orders = () => {
                     Order #{order.id.slice(-6)}
                   </h3>
                   <p className="text-sm text-gray-500">
-                    {order.createdAt.toLocaleDateString()}
+                    {new Date(order.createdAt).toLocaleDateString()}
                   </p>
                 </div>
-                <span
-                  className={`px-3 py-1 rounded-full text-sm ${
-                    order.status === "delivered"
-                      ? "bg-green-100 text-green-800"
-                      : order.status === "processing"
-                      ? "bg-yellow-100 text-yellow-800"
-                      : "bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                </span>
+                <div className="flex items-center space-x-2">
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm ${
+                      order.status === "delivered"
+                        ? "bg-green-100 text-green-800"
+                        : order.status === "processing"
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {order.status.charAt(0).toUpperCase() +
+                      order.status.slice(1)}
+                  </span>
+                  <button
+                    onClick={() => deleteOrder(order.id)}
+                    className="text-red-500 hover:underline text-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
               <div className="border-t pt-4">
                 <div className="space-y-2">
