@@ -1,4 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
+import { MdInfoOutline } from "react-icons/md";
+import { ImCancelCircle } from "react-icons/im";
+import { IoSearch } from "react-icons/io5";
 
 import { menuData, categories } from "../constants/menuData";
 import Modal from "../components/Modal";
@@ -126,37 +129,18 @@ const Products = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <svg
-                className="absolute left-3 top-2.5 h-5 w-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+              {/* className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" */}
+              <div className="absolute left-3 top-2.5 h-5 w-5 text-gray-400">
+                <IoSearch size={22} />
+              </div>
               {searchQuery && (
                 <button
                   className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
                   onClick={() => setSearchQuery("")}
                 >
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <div className="h-5 w-5">
+                    <ImCancelCircle size={22} />
+                  </div>
                 </button>
               )}
             </div>
@@ -242,25 +226,13 @@ const ProductCard = ({ product }: { product: MenuItem }) => {
   const quantity = getItemQuantity(product.id);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative">
+    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative">
       {/* Info Icon */}
       <button
         onClick={() => setShowModal(true)}
         className="absolute top-2 right-2 z-10 p-2 bg-white bg-opacity-75 rounded-full hover:bg-opacity-100"
       >
-        <svg
-          className="w-5 h-5 text-gray-600"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
+        <MdInfoOutline color="black" size={20} />
       </button>
 
       {/* Product Image */}
@@ -275,10 +247,10 @@ const ProductCard = ({ product }: { product: MenuItem }) => {
 
       <div className="space-y-2">
         <h3 className="text-xl font-semibold">{product.name}</h3>
-        <p className="text-gray-600 text-sm line-clamp-2">
+        <p className="text-gray-600 text-sm line-clamp-2 dark:text-white">
           {product.description}
         </p>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between ">
           <p className="text-lg font-bold text-red-600">
             ₹{product.price.toFixed(2)}
           </p>
@@ -309,7 +281,7 @@ const ProductCard = ({ product }: { product: MenuItem }) => {
             </div>
           )}
         </div>
-        <div className="text-xs text-gray-500">
+        <div className="text-xs text-gray-500 dark:text-white">
           <p>Serving: {product.serving_size}</p>
           <p>Calories: {product.nutrition.energy}</p>
         </div>
