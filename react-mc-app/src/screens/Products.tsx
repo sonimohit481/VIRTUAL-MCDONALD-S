@@ -125,7 +125,7 @@ const Products = () => {
               <input
                 type="text"
                 placeholder="Search menu items..."
-                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full px-4 py-2 pl-10 border border-gray-300 dark:bg-gray-800 dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:focus:ring-gray-500"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -135,7 +135,7 @@ const Products = () => {
               </div>
               {searchQuery && (
                 <button
-                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 "
                   onClick={() => setSearchQuery("")}
                 >
                   <div className="h-5 w-5">
@@ -145,15 +145,15 @@ const Products = () => {
               )}
             </div>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide ">
             {categories.map((category) => (
               <button
                 key={category}
                 className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors duration-200 ${
                   selectedCategory === category
-                    ? "bg-yellow-400 text-gray-900 font-semibold"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                    ? "bg-yellow-400 text-gray-900 font-semibold  "
+                    : "bg-gray-100 text-gray-600   dark:bg-gray-800 dark:text-white"
+                } `}
                 onClick={() => setSelectedCategory(category)}
               >
                 {category}
@@ -164,11 +164,11 @@ const Products = () => {
 
         {/* Category Description */}
         {selectedCategory !== "All" && (
-          <div className="bg-gray-50 p-4 rounded-lg mb-6">
-            <h2 className="font-semibold text-lg text-gray-900 mb-1">
+          <div className="bg-gray-50 p-4 rounded-lg mb-6 dark:bg-gray-800 ">
+            <h2 className="font-semibold text-lg text-gray-900 mb-1  dark:text-white">
               {selectedCategory}
             </h2>
-            <p className="text-gray-600 text-sm">
+            <p className="text-gray-600 text-sm  dark:text-white">
               {getCategoryDescription(selectedCategory)}
             </p>
           </div>
