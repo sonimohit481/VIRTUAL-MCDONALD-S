@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import authService from "../appwrite/auth";
 import { UserSession } from "../interface";
+import { removeItems, setItems } from "../utils";
 
 interface AuthContextType {
   user: UserSession | null;
@@ -23,6 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(true);
       try {
         const currentUser = await authService.getCurrentUser();
+        setItems("User", currentUser);
         setUser(currentUser);
       } catch (error: any) {
         console.error("!! Error fetching current user:", error.message);
@@ -41,6 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(true);
       await authService.loginWithGoogle();
       const currentUser = await authService.getCurrentUser();
+      setItems("User", currentUser);
       setUser(currentUser);
     } catch (error: any) {
       console.error("!! Error signing in with Google:", error.message);
@@ -57,6 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(true);
       await authService.loginWithEmailAndPassword({ email, password });
       const currentUser = await authService.getCurrentUser();
+      setItems("User", currentUser);
       setUser(currentUser);
     } catch (error: any) {
       console.error(
@@ -75,6 +79,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setError(null);
       setIsLoading(true);
       await authService.logout();
+      removeItems("User");
       setUser(null);
     } catch (error: any) {
       console.error("!! Error logging out:", error.message);
