@@ -226,7 +226,7 @@ const ProductCard = ({ product }: { product: MenuItem }) => {
   const quantity = getItemQuantity(product.id);
 
   return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative">
+    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative flex flex-col justify-between">
       {/* Info Icon */}
       <button
         onClick={() => setShowModal(true)}

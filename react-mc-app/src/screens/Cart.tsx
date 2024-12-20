@@ -164,8 +164,10 @@ const Cart = () => {
         onClose={() => setShowModal(false)}
       />
 
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Your Cart</h1>
+      <div className="flex justify-between items-center mb-8 ">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          Your Cart
+        </h1>
         <button
           onClick={clearCart}
           className="text-red-600 hover:text-red-700 font-semibold"
@@ -174,13 +176,13 @@ const Cart = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 ">
         {/* Cart Items */}
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-4 ">
           {cart.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg shadow-md p-4 flex gap-4"
+              className="bg-white rounded-lg shadow-md p-4 flex gap-4 dark:bg-gray-800 dark:text-white"
             >
               <img
                 src={item.image}
@@ -192,12 +194,15 @@ const Cart = () => {
                   <h3 className="text-lg font-semibold">{item.name}</h3>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="text-gray-400 hover:text-red-500"
+                    className="text-gray-400"
                   >
-                    <ImCancelCircle size={24} color="black" />
+                    <ImCancelCircle
+                      size={24}
+                      className="dark:bg-gray-800 dark:text-white hover:text-red-600"
+                    />
                   </button>
                 </div>
-                <p className="text-gray-600 text-sm mb-2">
+                <p className="text-gray-600 text-sm mb-2 dark:bg-gray-800 dark:text-white">
                   {item.serving_size} • {item.nutrition.energy}
                 </p>
                 <div className="flex justify-between items-center">
@@ -211,12 +216,12 @@ const Cart = () => {
                     <span className="font-semibold">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded"
+                      className="bg-yellow-400 hover:bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded"
                     >
                       +
                     </button>
                   </div>
-                  <p className="font-bold text-gray-900">
+                  <p className="font-bold text-gray-900 dark:bg-gray-800 dark:text-white">
                     ₹{(item.price * item.quantity).toFixed(2)}
                   </p>
                 </div>
@@ -227,18 +232,18 @@ const Cart = () => {
 
         {/* Order Summary */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-md p-6 sticky top-4">
+          <div className="bg-white rounded-lg shadow-md p-6 sticky top-4 dark:bg-gray-800 dark:text-white">
             <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
             <div className="space-y-2 mb-4">
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 dark:bg-gray-800 dark:text-white">
                 <span>Subtotal</span>
                 <span>₹{calculateTotal().toFixed(2)}</span>
               </div>
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 dark:bg-gray-800 dark:text-white">
                 <span>Delivery Fee</span>
                 <span>₹40.00</span>
               </div>
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-gray-600 dark:bg-gray-800 dark:text-white">
                 <span>Tax (5%)</span>
                 <span>₹{(calculateTotal() * 0.05).toFixed(2)}</span>
               </div>
