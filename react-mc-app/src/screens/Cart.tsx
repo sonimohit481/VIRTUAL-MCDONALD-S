@@ -13,7 +13,6 @@ import { PaymentModal } from "../components";
 
 const Cart = () => {
   const { user } = useAuth();
-  console.log("🚀 ~ Cart ~ user:", user);
   const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);

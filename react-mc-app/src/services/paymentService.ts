@@ -85,8 +85,6 @@ export const verifyPayment = async (response: any, orderId: string) => {
 
 export const processOrder = async (cart: CartItem[], userId: string) => {
   const summary = summarizeCart(cart);
-  console.log("Item Names:", summary.names);
-  console.log("Total Items:", summary.totalItems);
   try {
     const total = cart.reduce(
       (total, item) => total + item.price * item.quantity,

@@ -121,7 +121,6 @@ function placeOrder(event) {
   document.querySelector("#displayOrderDetail").appendChild(box);
   let time = Math.floor(Math.random() * (10 - 4 + 1) + 4);
   time = time * 1000;
-  console.log(time);
   setTimeout(() => {
     document.querySelector("#displayOrderDetail").removeChild(box);
     let orderitem = document.createElement("p");
