@@ -7,8 +7,9 @@ import { useAuth } from "../context/AuthContext";
 const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
   const navigate = useNavigate();
-  const { signInWithGoogle, loginWithEmailAndPassword } = useAuth();
+  const { signInWithGoogle, sighUpWithEmail, signInWithEmail } = useAuth();
 
   const validationSchema = Yup.object({
     name: isSignUp
@@ -33,11 +34,12 @@ const AuthForm = () => {
       setIsLoading(true);
       try {
         if (isSignUp) {
-          await loginWithEmailAndPassword(values.email, values.password);
+          console.log("🚀 ~ onSubmit: ~ isSignUp:", isSignUp);
+          await sighUpWithEmail(values.email, values.password, values.name);
         } else {
-          await loginWithEmailAndPassword(values.email, values.password);
-          navigate("/");
+          await signInWithEmail(values.email, values.password);
         }
+        navigate("/");
       } catch (err: any) {
         setErrors({ email: err.message || "An error occurred" });
       } finally {
@@ -48,14 +50,14 @@ const AuthForm = () => {
   });
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true);
+    setIsLoadingGoogle(true);
     try {
       await signInWithGoogle();
-      navigate("/");
+      // navigate("/");
     } catch (err: any) {
       formik.setErrors({ email: err.message || "An error occurred" });
     } finally {
-      setIsLoading(false);
+      setIsLoadingGoogle(false);
     }
   };
 
@@ -64,7 +66,7 @@ const AuthForm = () => {
       <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6">
           <h1 className="text-xl font-bold text-gray-900 md:text-2xl dark:text-white">
-            {isSignUp ? "Create an account" : "Log in to your account"}
+            {isSignUp ? "Sign up an account" : "Sign in to your account"}
           </h1>
           <form className="space-y-4" onSubmit={formik.handleSubmit}>
             {isSignUp && (
@@ -155,7 +157,7 @@ const AuthForm = () => {
               className="w-full text-white bg-yellow-600 hover:bg-yellow-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700"
               disabled={formik.isSubmitting || isLoading}
             >
-              {isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Log In"}
+              {isLoading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
             </button>
           </form>
           <div className="flex items-center justify-between my-4">
@@ -167,9 +169,9 @@ const AuthForm = () => {
           <button
             onClick={handleGoogleSignIn}
             className="w-full text-gray-900 bg-white border border-gray-300 hover:bg-gray-50 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center justify-center mt-4"
-            disabled={isLoading}
+            disabled={isLoadingGoogle}
           >
-            {isLoading ? (
+            {isLoadingGoogle ? (
               "Loading..."
             ) : (
               <>

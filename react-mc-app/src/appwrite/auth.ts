@@ -20,7 +20,7 @@ export class AuthService {
     }
   }
 
-  async createAccount({ email, password, name }: LogInForm) {
+  async createWithEmail({ email, password, name }: LogInForm) {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
@@ -30,7 +30,7 @@ export class AuthService {
       );
 
       if (userAccount) {
-        return await this.loginWithEmailAndPassword({ email, password });
+        return await this.loginWithEmail({ email, password });
       } else {
         throw new Error("!! Failed to create user account");
       }
@@ -39,7 +39,7 @@ export class AuthService {
     }
   }
 
-  async loginWithEmailAndPassword({ email, password }: LogInForm) {
+  async loginWithEmail({ email, password }: LogInForm) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error: any) {

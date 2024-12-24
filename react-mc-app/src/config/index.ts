@@ -1,3 +1,5 @@
+const currentUrl = window.location.origin;
+
 export const config = {
   razorpay: {
     keyId: import.meta.env.VITE_RAZORPAY_KEY_ID,
@@ -18,8 +20,11 @@ export const config = {
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
   },
   google: {
-    googleRedirectUrl: import.meta.env.VITE_GOOGLE_REDIRECT_URL as string,
-    googleCallbackUrl: import.meta.env.VITE_GOOGLE_CALLBACK_URL as string,
+    googleRedirectUrl: `${currentUrl}${
+      import.meta.env.VITE_GOOGLE_REDIRECT_URL as string
+    }`,
+    googleCallbackUrl: `${currentUrl}${
+      import.meta.env.VITE_GOOGLE_CALLBACK_URL as string
+    }`,
   },
-  // Add other configuration here
 } as const;

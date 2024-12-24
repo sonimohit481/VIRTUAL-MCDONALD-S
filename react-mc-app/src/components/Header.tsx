@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburger } from "react-icons/gi";
 import { IoMdLogIn, IoIosCart, IoMdLogOut } from "react-icons/io";
 
@@ -28,6 +28,8 @@ const Links = ({
 const Header = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { user, logout } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const toggleProfileMenu = () => {
     setIsProfileOpen(!isProfileOpen);
@@ -35,7 +37,10 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
+      setIsLoading(true);
       await logout();
+      navigate("/auth");
+      setIsLoading(false);
     } catch (error) {
       console.error("Error logging out:", error);
     }
@@ -100,13 +105,7 @@ const Header = () => {
               </div>
 
               {isProfileOpen && (
-                <div
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabIndex={-1}
-                >
+                <div className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white dark:bg-gray-700 py-1 shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-none">
                   <Link
                     to="/orders"
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600"
@@ -117,15 +116,19 @@ const Header = () => {
                     Your Orders
                   </Link>
 
-                  <button
-                    onClick={handleLogout}
-                    className="px-4 py-2 text-sm text-gray-700 bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:text-yellow-200 dark:hover:bg-yellow-800 flex justify-start items-center flex-row w-full"
-                  >
-                    Sign out
-                    <div className="mx-2">
-                      <IoMdLogOut size={24} color="#F5Ca0B" />
+                  {!isLoading ? (
+                    <div
+                      onClick={handleLogout}
+                      className="px-4 py-2 text-sm text-gray-700 hover:bg-yellow-200  flex justify-start items-center flex-row w-full"
+                    >
+                      Sign out
+                      <div className="mx-2">
+                        <IoMdLogOut size={24} color="#F5Ca0B" />
+                      </div>
                     </div>
-                  </button>
+                  ) : (
+                    "loggin out..."
+                  )}
                 </div>
               )}
             </div>
