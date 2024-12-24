@@ -9,10 +9,10 @@ export default function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-gray-500 dark:bg-gray-900">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
           <Header />
 
-          <div className="relative overflow-hidden min-h-[calc(100vh-10vh)] bg-slate-50 ">
+          <div className="relative overflow-hidden min-h-[calc(100vh-10vh)]  ">
             <Routes>
               <Route path="/" element={<Home />} />
 

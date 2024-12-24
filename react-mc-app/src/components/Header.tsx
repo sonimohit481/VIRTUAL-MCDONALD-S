@@ -96,7 +96,7 @@ const Header = () => {
           {!user ? (
             <Links
               icon={<IoMdLogIn size={24} color="#F5Ca0B" />}
-              title="login"
+              title="log in"
               to="auth"
             />
           ) : (
@@ -129,7 +129,7 @@ const Header = () => {
                   {!isLoading ? (
                     <div
                       onClick={handleLogout}
-                      className="px-4 py-2 text-sm text-gray-700 hover:bg-yellow-200 flex justify-start items-center flex-row w-full cursor-pointer"
+                      className="px-4 py-2 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600  flex justify-start items-center flex-row w-full cursor-pointer"
                     >
                       Sign out
                       <div className="mx-2">
@@ -137,7 +137,9 @@ const Header = () => {
                       </div>
                     </div>
                   ) : (
-                    "Logging out..."
+                    <p className=" text-black dark:text-white">
+                      Logging out...
+                    </p>
                   )}
                 </div>
               )}

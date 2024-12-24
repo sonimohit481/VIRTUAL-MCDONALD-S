@@ -129,7 +129,6 @@ const Products = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-              {/* className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" */}
               <div className="absolute left-3 top-2.5 h-5 w-5 text-gray-400">
                 <IoSearch size={22} />
               </div>
@@ -152,7 +151,7 @@ const Products = () => {
                 className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors duration-200 ${
                   selectedCategory === category
                     ? "bg-yellow-400 text-gray-900 font-semibold  "
-                    : "bg-gray-100 text-gray-600   dark:bg-gray-800 dark:text-white"
+                    : "bg-white text-black   dark:bg-gray-800 dark:text-white"
                 } `}
                 onClick={() => setSelectedCategory(category)}
               >

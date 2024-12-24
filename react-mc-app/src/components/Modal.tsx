@@ -22,11 +22,8 @@ const Modal = ({
 
   return (
     <>
-      {/* Main modal  */}
       <div
         id="default-modal"
-        tabIndex={-1}
-        aria-hidden="true"
         className=" bg-black bg-opacity-70  overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full max-h-full"
       >
         <div className="relative p-4 w-full max-w-2xl max-h-full">
@@ -47,29 +44,33 @@ const Modal = ({
             </div>
             {/* Modal body  */}
             <div className="p-4 md:p-5 space-y-4">
-              {" "}
-              <div className="space-y-4">
+              <div className="space-y-4 text-center text-black dark:text-white">
                 <div className="flex justify-between items-start">
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                     {product.name}
                   </h3>
-                  <p className="text-xl font-bold text-red-600">
+                  <p className="text-xl font-bold text-red-500">
                     ₹{product.price.toFixed(2)}
                   </p>
                 </div>
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover rounded-md"
+                  className="w-[60%] h-[60%] object-cover rounded-md mx-auto"
                   loading="lazy"
                 />
                 <p className="text-gray-600 dark:text-white">
                   {product.description}
                 </p>
+                <div className="flex items-center justify-between my-4">
+                  <hr className="w-full border-gray-300" />
+                  {/* <span className="mx-4 text-gray-500 font-medium">OR</span>
+            <hr className="w-full border-gray-300" /> */}
+                </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 ">
                   <h4 className="font-semibold">Nutrition Information</h4>
-                  <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-sm ">
                     <div>Energy: {product.nutrition.energy}</div>
                     <div>Protein: {product.nutrition.protein}</div>
                     <div>Total Fat: {product.nutrition.total_fat}</div>
@@ -79,15 +80,26 @@ const Modal = ({
 
                 <div className="space-y-2">
                   <h4 className="font-semibold">Allergens</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {product.allergens.map((allergen) => (
-                      <span
-                        key={allergen}
-                        className="px-2 py-1 bg-gray-100 rounded-full text-sm dark:text-black dark:bg-yellow-200"
-                      >
-                        {allergen}
-                      </span>
-                    ))}
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {product.allergens.map((allergen) => {
+                      const randomColor = [
+                        "bg-yellow-200",
+                        "bg-pink-200",
+                        "bg-green-200",
+                        "bg-blue-200",
+                        "bg-red-200",
+                        "bg-purple-200",
+                      ][Math.floor(Math.random() * 6)];
+
+                      return (
+                        <span
+                          key={allergen}
+                          className={`${randomColor} px-3 py-1 rounded-full text-sm font-medium text-gray-900 dark:text-black`}
+                        >
+                          {allergen}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
 
