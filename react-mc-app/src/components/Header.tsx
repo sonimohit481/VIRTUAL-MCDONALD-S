@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GiHamburger } from "react-icons/gi";
 import { IoMdLogIn, IoIosCart, IoMdLogOut } from "react-icons/io";
@@ -26,13 +26,17 @@ const Links = ({
 };
 
 const Header = () => {
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const { user, logout } = useAuth();
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { user, logout } = useAuth();
+
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const profileMenuRef = useRef<HTMLDivElement>(null);
+
   const toggleProfileMenu = () => {
-    setIsProfileOpen(!isProfileOpen);
+    setIsProfileOpen((prev) => !prev);
   };
 
   const handleLogout = async () => {
@@ -46,12 +50,25 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className="bg-white shadow-sm dark:bg-gray-800">
-      <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-        aria-label="Global"
-      >
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
         {/* Logo Section */}
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
@@ -64,8 +81,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className=" flex lg:gap-x-12 flex-row">
+        <div className="flex lg:gap-x-12 flex-row">
           <Links
             icon={<GiHamburger size={24} color="#F5Ca0B" />}
             title="products"
@@ -84,15 +100,12 @@ const Header = () => {
               to="auth"
             />
           ) : (
-            <div className="relative ml-3">
+            <div ref={profileMenuRef} className="relative ml-3">
               <div>
                 <button
                   type="button"
                   onClick={toggleProfileMenu}
                   className="relative flex rounded-full bg-gray-200 dark:bg-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                  id="user-menu-button"
-                  aria-expanded="false"
-                  aria-haspopup="true"
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
@@ -109,9 +122,6 @@ const Header = () => {
                   <Link
                     to="/orders"
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-600"
-                    role="menuitem"
-                    tabIndex={-1}
-                    id="user-menu-item-0"
                   >
                     Your Orders
                   </Link>
@@ -119,7 +129,7 @@ const Header = () => {
                   {!isLoading ? (
                     <div
                       onClick={handleLogout}
-                      className="px-4 py-2 text-sm text-gray-700 hover:bg-yellow-200  flex justify-start items-center flex-row w-full"
+                      className="px-4 py-2 text-sm text-gray-700 hover:bg-yellow-200 flex justify-start items-center flex-row w-full cursor-pointer"
                     >
                       Sign out
                       <div className="mx-2">
@@ -127,7 +137,7 @@ const Header = () => {
                       </div>
                     </div>
                   ) : (
-                    "loggin out..."
+                    "Logging out..."
                   )}
                 </div>
               )}
