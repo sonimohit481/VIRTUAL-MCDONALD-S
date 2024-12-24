@@ -80,7 +80,6 @@ const Cart = () => {
         setModalType("preparing");
         setIsProcessing(false);
 
-        // Show animation for payment verification
         try {
           const verified = await new Promise(
             (resolve) =>
@@ -99,11 +98,8 @@ const Cart = () => {
               setCart([]);
               localStorage.setItem("cart", "[]");
 
-              // Redirect after a delay
-              setTimeout(() => {
-                setShowModal(false);
-                navigate("/orders"); // Adjust to your orders page or desired route
-              }, 3000);
+              setShowModal(false);
+              navigate("/orders");
             }, 2000);
           } else {
             setModalMessage("Payment verification failed! Please try again.");
