@@ -17,7 +17,7 @@ export const initializePayment = async (
     );
     const tax = subtotal * 0.05;
     const deliveryFee = 40;
-    const totalAmount = (subtotal + tax + deliveryFee) * 100;
+    const totalAmount = Math.floor((subtotal + tax + deliveryFee) * 100);
 
     const orderResponse = await fetch(`${URL}/create-order`, {
       method: "POST",
