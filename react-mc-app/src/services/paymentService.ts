@@ -45,6 +45,29 @@ export const initializePayment = async (
         contact: userDetails.phone,
       },
       theme: { color: "#F5Ca0B" },
+      config: {
+        display: {
+          blocks: {
+            banks: {
+              name: "USE THIS FOR FAKE PAYMENTS",
+              instruments: [
+                {
+                  method: "wallet",
+                  wallets: ["jiomoney"],
+                },
+                {
+                  method: "wallet",
+                  wallets: ["airtelmoney"],
+                },
+              ],
+            },
+          },
+          sequence: ["block.banks"],
+          preferences: {
+            show_default_blocks: true,
+          },
+        },
+      },
     };
 
     const razorpay = new (window as any).Razorpay(options);
