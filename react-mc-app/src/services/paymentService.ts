@@ -1,9 +1,9 @@
-import orderService from "../appwrite/config";
+import axios from "../lib/axios";
 import { config } from "../config";
 import { CartItem } from "../interface";
+import orderService from "../appwrite/config";
 
 const RAZORPAY_KEY_ID = config.razorpay.keyId;
-const URL = config.api.baseUrl;
 
 export const initializePayment = async (
   cart: CartItem[],
@@ -19,22 +19,15 @@ export const initializePayment = async (
     const deliveryFee = 40;
     const totalAmount = Math.floor((subtotal + tax + deliveryFee) * 100);
 
-    const orderResponse = await fetch(`${URL}/create-order`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount: totalAmount,
-        currency: "INR",
-        receipt: `Receipt_${Date.now()}`,
-        notes: {
-          customer_name: userDetails.name,
-          customer_email: userDetails.email,
-        },
-      }),
+    const orderResponse = await axios.post("/create-order", {
+      amount: totalAmount,
+      currency: "INR",
+      receipt: `Receipt_${Date.now()}`,
+      notes: {
+        customer_name: userDetails.name,
+        customer_email: userDetails.email,
+      },
     });
-
-    const orderData = await orderResponse.json();
-    if (!orderData.id) throw new Error("Failed to create order");
 
     const options = {
       key: RAZORPAY_KEY_ID,
@@ -42,10 +35,10 @@ export const initializePayment = async (
       currency: "INR",
       description: `Order payment for ${cart.length} items`,
       name: "Mc Donald Clone React",
-      image:
-        "https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/images/logo.png",
-      order_id: orderData.id,
-      handler: (response: any) => onPaymentComplete(response, orderData.id),
+      image: "/logo.png",
+      order_id: orderResponse.data.id,
+      handler: (response: any) =>
+        onPaymentComplete(response, orderResponse.data.id),
       prefill: {
         name: userDetails.name,
         email: userDetails.email,
@@ -58,25 +51,20 @@ export const initializePayment = async (
     razorpay.open();
   } catch (error) {
     console.error("Payment initialization failed:", error);
+    throw error;
   }
 };
 
 export const verifyPayment = async (response: any, orderId: string) => {
   try {
-    const verifyResponse = await fetch(`${URL}/verify-payment`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        razorpay_payment_id: response.razorpay_payment_id,
-        razorpay_order_id: response.razorpay_order_id,
-        razorpay_signature: response.razorpay_signature,
-        order_id: orderId,
-      }),
+    const verifyResponse = await axios.post("/verify-payment", {
+      razorpay_payment_id: response.razorpay_payment_id,
+      razorpay_order_id: response.razorpay_order_id,
+      razorpay_signature: response.razorpay_signature,
+      order_id: orderId,
     });
 
-    const data = await verifyResponse.json();
-    if (data.verified) return true;
-    else throw new Error("Payment verification failed");
+    return verifyResponse.data.verified;
   } catch (error) {
     console.error("Payment verification failed:", error);
     throw error;
@@ -108,8 +96,8 @@ export const processOrder = async (cart: CartItem[], userId: string) => {
 };
 
 const summarizeCart = (cart: CartItem[]) => {
-  const names = cart.map((item) => item.name).join(", "); // Get a comma-separated string of item names
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0); // Calculate total quantity of items
+  const names = cart.map((item) => item.name).join(", ");
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return {
     names,
