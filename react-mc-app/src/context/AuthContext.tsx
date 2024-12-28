@@ -28,14 +28,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(true);
       try {
         const currentUser = await authService.getCurrentUser();
-        // setItems("User", currentUser);
         setUser(currentUser);
-
-        // Initialize or refresh last activity timestamp
-        // const storedLastActivity = localStorage.getItem("lastActivity");
-        // if (!storedLastActivity) {
-        //   updateLastActivity();
-        // }
       } catch (error: any) {
         console.error("!! Error fetching current user:", error.message);
         setUser(null);
@@ -53,9 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsLoading(true);
       await authService.loginWithGoogle();
       const currentUser = await authService.getCurrentUser();
-      // setItems("User", currentUser);
       setUser(currentUser);
-      // updateLastActivity(); // Reset activity timestamp on login
     } catch (error: any) {
       console.error("!! Error signing in with Google:", error.message);
       setError(error.message);
@@ -73,13 +64,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       setError(null);
       setIsLoading(true);
-      await authService.createWithEmail({ email, password, name });
-      const currentUser = await authService.getCurrentUser();
+      const currentUser = await authService.createWithEmail({
+        email,
+        password,
+        name,
+      });
+      // await authService.createWithEmail({ email, password, name });
+      // const currentUser = await authService.getCurrentUser();
       // setItems("User", currentUser);
-      setUser(currentUser);
+      if (currentUser) setUser(currentUser);
       // updateLastActivity(); // Reset activity timestamp on login
     } catch (error: any) {
       console.error("!! Error Sign Up with email and password:", error.message);
+      setUser(null);
       setError(error.message);
       throw error;
     } finally {
@@ -91,15 +88,17 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       setError(null);
       setIsLoading(true);
-      await authService.loginWithEmail({ email, password });
-      const currentUser = await authService.getCurrentUser();
+      const currentUser = await authService.loginWithEmail({ email, password });
+      // await authService.loginWithEmail({ email, password });
+      // const currentUser = await authService.getCurrentUser();
 
-      setUser(currentUser);
+      if (currentUser) setUser(currentUser);
     } catch (error: any) {
       console.error(
         "!! Error logging in with email and password:",
         error.message
       );
+      setUser(null);
       setError(error.message);
       throw error;
     } finally {
