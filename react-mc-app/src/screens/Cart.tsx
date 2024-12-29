@@ -8,13 +8,24 @@ import {
   verifyPayment,
 } from "../services/paymentService";
 import { useAuth } from "../context/AuthContext";
-import { CartItem } from "../interface";
+import { CartItem, MenuItem } from "../interface";
 import { PaymentModal } from "../components";
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
+  const {
+    cartItems,
+    clearCart,
+    removeFromCart,
+    increaseCartQantity,
+    decreaseCartQantity,
+  } = useCart();
+
   const { user } = useAuth();
+
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartItem[]>([]);
+
+  const [cart, setCart] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [isProcessing, setIsProcessing] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -24,39 +35,39 @@ const Cart = () => {
   >("preparing");
 
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
+    // const savedCart = localStorage.getItem("cart");
+    if (cartItems) {
+      setCart(cartItems);
     }
     setLoading(false);
-  }, []);
+  }, [cartItems]);
 
-  const updateQuantity = (productId: number, newQuantity: number) => {
-    const updatedCart = cart
-      .map((item) =>
-        item.id === productId
-          ? { ...item, quantity: Math.max(0, newQuantity) }
-          : item
-      )
-      .filter((item) => item.quantity > 0);
+  // const updateQuantity = (productId: number, newQuantity: number) => {
+  //   const updatedCart = cart
+  //     .map((item) =>
+  //       item.id === productId
+  //         ? { ...item, qan: Math.max(0, newQuantity) }
+  //         : item
+  //     )
+  //     .filter((item) => item.qan > 0);
 
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
 
-  const removeItem = (productId: number) => {
-    const updatedCart = cart.filter((item) => item.id !== productId);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+  // const removeItem = (productId: number) => {
+  //   const updatedCart = cart.filter((item) => item.id !== productId);
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // };
 
-  const clearCart = () => {
-    setCart([]);
-    localStorage.setItem("cart", "[]");
-  };
+  // const clearCart = () => {
+  //   setCart([]);
+  //   localStorage.setItem("cart", "[]");
+  // };
 
   const calculateTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => total + item.price * item.qan, 0);
   };
 
   const handleCheckout = async () => {
@@ -188,7 +199,8 @@ const Cart = () => {
                 <div className="flex justify-between">
                   <h3 className="text-lg font-semibold">{item.name}</h3>
                   <button
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeFromCart(item.id)}
+                    // onClick={() => removeItem(item.id)}
                     className="text-gray-400"
                   >
                     <ImCancelCircle
@@ -203,21 +215,23 @@ const Cart = () => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => decreaseCartQantity(item)}
+                      // onClick={() => updateQuantity(item.id, item.qan - 1)}
                       className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded"
                     >
                       -
                     </button>
-                    <span className="font-semibold">{item.quantity}</span>
+                    <span className="font-semibold">{item.qan}</span>
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => increaseCartQantity(item)}
+                      // onClick={() => updateQuantity(item.id, item.qan + 1)}
                       className="bg-yellow-400 hover:bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded"
                     >
                       +
                     </button>
                   </div>
                   <p className="font-bold text-gray-900 dark:bg-gray-800 dark:text-white">
-                    ₹{(item.price * item.quantity).toFixed(2)}
+                    ₹{(item.price * item.qan).toFixed(2)}
                   </p>
                 </div>
               </div>
