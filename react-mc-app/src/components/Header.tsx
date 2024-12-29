@@ -4,6 +4,7 @@ import { GiHamburger } from "react-icons/gi";
 import { IoMdLogIn, IoIosCart, IoMdLogOut } from "react-icons/io";
 
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 
 const Links = ({
   to,
@@ -26,6 +27,8 @@ const Links = ({
 };
 
 const Header = () => {
+  const { cartItems } = useCart();
+  console.log("🚀 ~ Header ~ cartItems:", cartItems);
   const navigate = useNavigate();
 
   const { user, logout } = useAuth();
@@ -87,11 +90,25 @@ const Header = () => {
             title="products"
             to="products"
           />
-          <Links
-            icon={<IoIosCart size={24} color="#F5Ca0B" />}
-            title="cart"
-            to="cart"
-          />
+          <Link
+            to={`/cart`}
+            className="text-sm flex flex-row mx-1 justify-center items-center font-semibold text-gray-900 hover:text-gray-600 dark:text-gray-100 dark:hover:text-gray-300"
+          >
+            {
+              <div className="mx-2">
+                {<IoIosCart size={24} color="#F5Ca0B" />}
+              </div>
+            }
+            <div className="hidden md:block">{"cart".toLocaleUpperCase()}</div>
+            {cartItems && cartItems.length > 0 && (
+              <div className="relative flex size-5 right-2   md:right-14 md:-bottom-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full size-5 bg-red-500 opacity-75 justify-center items-center text-white  text-xs">
+                  {cartItems?.length}
+                </span>
+              </div>
+            )}
+          </Link>
 
           {!user ? (
             <Links
