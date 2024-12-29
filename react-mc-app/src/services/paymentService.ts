@@ -1,18 +1,18 @@
 import axios from "../lib/axios";
 import { config } from "../config";
-import { CartItem } from "../interface";
+import { CartItem, MenuItem } from "../interface";
 import orderService from "../appwrite/config";
 
 const RAZORPAY_KEY_ID = config.razorpay.keyId;
 
 export const initializePayment = async (
-  cart: CartItem[],
+  cart: MenuItem[],
   userDetails: any,
   onPaymentComplete: (response: any, orderId: string) => void
 ) => {
   try {
     const subtotal = cart.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.price * item.qan,
       0
     );
     const tax = subtotal * 0.05;
@@ -94,11 +94,11 @@ export const verifyPayment = async (response: any, orderId: string) => {
   }
 };
 
-export const processOrder = async (cart: CartItem[], userId: string) => {
+export const processOrder = async (cart: MenuItem[], userId: string) => {
   const summary = summarizeCart(cart);
   try {
     const total = cart.reduce(
-      (total, item) => total + item.price * item.quantity,
+      (total, item) => total + item.price * item.qan,
       0
     );
     const orderResponse = await orderService.createOrder({
@@ -118,9 +118,9 @@ export const processOrder = async (cart: CartItem[], userId: string) => {
   }
 };
 
-const summarizeCart = (cart: CartItem[]) => {
+const summarizeCart = (cart: MenuItem[]) => {
   const names = cart.map((item) => item.name).join(", ");
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cart.reduce((sum, item) => sum + item.qan, 0);
 
   return {
     names,

@@ -657,25 +657,25 @@ export const categories = [
   "Beverages",
 ];
 
-menuData.forEach((item) => {
-  switch (item.category) {
-    case "Burger":
-      item.category = "Burgers";
-      break;
-    case "Wrap":
-      item.category = "Wraps";
-      break;
-    case "Snack":
-      item.category = "Snacks";
-      break;
-    case "Side":
-      item.category = "Sides";
-      break;
-    case "Dessert":
-      item.category = "Desserts";
-      break;
-    case "Beverage":
-      item.category = "Beverages";
-      break;
-  }
-});
+// menuData.forEach((item) => {
+//   switch (item.category) {
+//     case "Burger":
+//       item.category = "Burgers";
+//       break;
+//     case "Wrap":
+//       item.category = "Wraps";
+//       break;
+//     case "Snack":
+//       item.category = "Snacks";
+//       break;
+//     case "Side":
+//       item.category = "Sides";
+//       break;
+//     case "Dessert":
+//       item.category = "Desserts";
+//       break;
+//     case "Beverage":
+//       item.category = "Beverages";
+//       break;
+//   }
+// });

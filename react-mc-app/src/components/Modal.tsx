@@ -7,7 +7,7 @@ interface ModalProps {
   product: MenuItem;
   quantity: number;
   addToCart: (args: MenuItem) => void;
-  removeFromCart: (args: number) => void;
+  removeFromCart: (args: MenuItem) => void;
 }
 
 const Modal = ({
@@ -114,7 +114,7 @@ const Modal = ({
                   ) : (
                     <div className="flex items-center justify-center gap-4">
                       <button
-                        onClick={() => removeFromCart(product.id)}
+                        onClick={() => removeFromCart(product)}
                         className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold py-2 px-4 rounded"
                       >
                         -
