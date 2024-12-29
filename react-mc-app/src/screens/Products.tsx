@@ -1,11 +1,10 @@
-import { useState, useMemo, useEffect } from "react";
-import { MdInfoOutline } from "react-icons/md";
+import { useState, useMemo } from "react";
 import { ImCancelCircle } from "react-icons/im";
 import { IoSearch } from "react-icons/io5";
 
+import { MenuItem } from "../interface";
 import { menuData, categories } from "../constants/menuData";
-import Modal from "../components/Modal";
-import { CartItem, MenuItem } from "../interface";
+import { ProductCard } from "../components";
 
 // Helper function remains the same
 const getCategoryDescription = (category: string): string => {
@@ -27,50 +26,6 @@ const getCategoryDescription = (category: string): string => {
   }
 };
 // Add cart hooks
-const useCart = () => {
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    const savedCart = localStorage.getItem("cart");
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  const addToCart = (product: MenuItem) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (productId: number) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === productId);
-      if (existingItem && existingItem.quantity > 1) {
-        return prevCart.map((item) =>
-          item.id === productId
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        );
-      }
-      return prevCart.filter((item) => item.id !== productId);
-    });
-  };
-
-  const getItemQuantity = (productId: number) => {
-    return cart.find((item) => item.id === productId)?.quantity || 0;
-  };
-
-  return { cart, addToCart, removeFromCart, getItemQuantity };
-};
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -214,88 +169,6 @@ const Products = () => {
           </button>
         </div>
       )}
-    </div>
-  );
-};
-
-// Update ProductCard component
-const ProductCard = ({ product }: { product: MenuItem }) => {
-  const [showModal, setShowModal] = useState(false);
-  const { addToCart, removeFromCart, getItemQuantity } = useCart();
-  const quantity = getItemQuantity(product.id);
-
-  return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative flex flex-col justify-between">
-      {/* Info Icon */}
-      <button
-        onClick={() => setShowModal(true)}
-        className="absolute top-2 right-2 z-10 p-2 bg-white bg-opacity-75 rounded-full hover:bg-opacity-100"
-      >
-        <MdInfoOutline color="black" size={20} />
-      </button>
-
-      {/* Product Image */}
-      <div className="aspect-w-16 aspect-h-9 mb-4">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover rounded-md"
-          loading="lazy"
-        />
-      </div>
-
-      <div className="space-y-2">
-        <h3 className="text-xl font-semibold">{product.name}</h3>
-        <p className="text-gray-600 text-sm line-clamp-2 dark:text-white">
-          {product.description}
-        </p>
-        <div className="flex items-center justify-between ">
-          <p className="text-lg font-bold text-red-600">
-            ₹{product.price.toFixed(2)}
-          </p>
-
-          {/* Cart Controls */}
-          {quantity === 0 ? (
-            <button
-              onClick={() => addToCart(product)}
-              className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-4 rounded"
-            >
-              Add to Cart
-            </button>
-          ) : (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => removeFromCart(product.id)}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-900 font-bold p-2 rounded"
-              >
-                -
-              </button>
-              <span className="font-semibold">{quantity}</span>
-              <button
-                onClick={() => addToCart(product)}
-                className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold p-2 rounded"
-              >
-                +
-              </button>
-            </div>
-          )}
-        </div>
-        <div className="text-xs text-gray-500 dark:text-white">
-          <p>Serving: {product.serving_size}</p>
-          <p>Calories: {product.nutrition.energy}</p>
-        </div>
-      </div>
-
-      {/* Product Details Modal */}
-      <Modal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-        product={product}
-        quantity={quantity}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-      />
-      {/* <ModalInfo /> */}
     </div>
   );
 };
