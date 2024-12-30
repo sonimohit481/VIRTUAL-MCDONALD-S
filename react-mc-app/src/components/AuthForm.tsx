@@ -34,7 +34,6 @@ const AuthForm = () => {
       setIsLoading(true);
       try {
         if (isSignUp) {
-          console.log("🚀 ~ onSubmit: ~ isSignUp:", isSignUp);
           await sighUpWithEmail(values.email, values.password, values.name);
         } else {
           await signInWithEmail(values.email, values.password);

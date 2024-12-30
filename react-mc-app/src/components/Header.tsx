@@ -28,7 +28,6 @@ const Links = ({
 
 const Header = () => {
   const { cartItems } = useCart();
-  console.log("🚀 ~ Header ~ cartItems:", cartItems);
   const navigate = useNavigate();
 
   const { user, logout } = useAuth();
