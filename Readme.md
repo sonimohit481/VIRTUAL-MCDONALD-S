@@ -10,7 +10,7 @@ A collection of projects using fundamental web technologies:
 - CSS
 - JavaScript
 
-![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/laptop.png)
+![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/mobal.png)
 
 🔗 [Live Demo](https://virtual-mcdonald-clone-01.netlify.app/)
 
@@ -22,8 +22,7 @@ Modern web applications built with React
 - API Routes
 - Modern UI/UX
 
-[Screenshot placeholder]
-![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/home.png)
+![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/home.png)
 
 🔗 [Live Demo](https://mcdonaldclonereact01.netlify.app/)
 
