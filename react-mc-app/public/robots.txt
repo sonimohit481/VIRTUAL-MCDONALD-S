@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /private/
+Allow: /
+Sitemap: https://mcdonaldclonereact01.netlify.app/sitemap.xml

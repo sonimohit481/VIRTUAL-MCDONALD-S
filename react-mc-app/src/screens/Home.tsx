@@ -5,7 +5,7 @@ const Home = () => {
     <div className="relative flex justify-center items-center h-screen">
       <div className="absolute inset-0">
         <img
-          src="https://img.freepik.com/premium-vector/fast-food-pattern_43137-96.jpg?semt=ais_hybrid"
+          src="/background.png"
           alt="Background Image"
           className="object-cover object-center w-full h-full"
         />
