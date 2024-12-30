@@ -1,6 +1,6 @@
 import axios from "../lib/axios";
 import { config } from "../config";
-import { CartItem, MenuItem } from "../interface";
+import { MenuItem } from "../interface";
 import orderService from "../appwrite/config";
 
 const RAZORPAY_KEY_ID = config.razorpay.keyId;
