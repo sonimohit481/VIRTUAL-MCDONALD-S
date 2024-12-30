@@ -8,7 +8,7 @@ This project is for **educational purposes only** and aims to explore different 
 
 ## 📱 Screen Show
 
-![Screen Show](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/home.png)
+![Screen Show](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/home.png)
 
 ## 🌐 Live Demo
 
@@ -22,38 +22,35 @@ This project uses a powerful set of technologies for building modern web applica
 
 ### Front-End
 
-- **React** ![React](https://img.icons8.com/color/48/000000/react.png)  
+- **React** ![React](https://skillicons.dev/icons?i=react)
   A JavaScript library for building user interfaces. Used here to create interactive components and manage the UI efficiently.
 
-- **Vite** ![Vite](https://img.icons8.com/ios/50/000000/vite.png)  
+- **Vite** ![Vite](https://skillicons.dev/icons?i=vite)
   A modern build tool that focuses on speed and optimization. It ensures fast hot-reloading and quick production builds.
 
-- **Tailwind CSS** ![Tailwind CSS](https://img.icons8.com/ios/50/000000/tailwind-css.png)  
+- **Tailwind CSS** ![Tailwind CSS](https://skillicons.dev/icons?i=tailwind)
   A utility-first CSS framework that allows you to build custom designs quickly by composing utility classes.
 
-- **Formik** & **Yup** ![Formik](https://img.icons8.com/ios/50/000000/formik.png)  
-  Formik handles form state management, and Yup is used for form validation, making it easy to build robust forms with minimal effort.
+- **Formik** & **Yup**: Formik handles form state management, and Yup is used for form validation, making it easy to build robust forms with minimal effort.
 
-- **React Router** ![React Router](https://img.icons8.com/ios/50/000000/react-router.png)  
-  A library for handling navigation and routing in React applications.
+- **React Router**: A library for handling navigation and routing in React applications.
 
-- **React-Redux** ![Redux](https://img.icons8.com/ios/50/000000/redux.png)  
+- **React-Redux** ![Redux](https://skillicons.dev/icons?i=redux)
   State management tool for handling complex states in large applications, ensuring data is shared and synchronized across components.
 
 ### Back-End
 
-- **Appwrite** ![Appwrite](https://img.icons8.com/ios/50/000000/appwrite.png)  
+- **Appwrite** ![Appwrite](https://skillicons.dev/icons?i=appwrite)
   Appwrite is used for authentication, user management, and order storage. It provides simple-to-use APIs for managing users and data in a secure and scalable way.
 
-- **Razorpay** ![Razorpay](https://img.icons8.com/ios/50/000000/razorpay.png)  
-  Razorpay is integrated for payment processing, handling secure online payments and order transactions.
+- **Razorpay**: Razorpay is integrated for payment processing, handling secure online payments and order transactions.
 
 ### Libraries & Tools
 
-- **Axios** ![Axios](https://img.icons8.com/ios/50/000000/axios.png)  
+- **Axios** ![Axios](https://skillicons.dev/icons?i=axios)
   Used to make HTTP requests to external APIs (such as Appwrite and Razorpay) to fetch or send data.
 
-- **Canvas Confetti** ![Canvas Confetti](https://img.icons8.com/ios/50/000000/confetti.png)  
+- **Canvas Confetti** ![Canvas Confetti](https://skillicons.dev/icons?i=canvas)
   Used to add celebratory animations, like confetti, on successful transactions or actions.
 
 ### Development Tools
@@ -105,12 +102,12 @@ This project is aimed at learning and exploring different versions of popular li
 
 ## ScreenShots
 
-![Product](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/product.png)
-![cart](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/cart.png)
-![Auth](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/auth.png)
-![Aazorpay](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/razorpay.png)
-![Success](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/success.png)
-![Verify](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/verify.png)
-![order](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/order.png)
+![Product](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/product.png)
+![Cart](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/cart.png)
+![Auth](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/auth.png)
+![Razorpay](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/razorpay.png)
+![Success](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/success.png)
+![Verify](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/verify.png)
+![Order](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/order.png)
 
 > **Note:** This is a learning project and should not be used in production environments without further refinement and security considerations.
