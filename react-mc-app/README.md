@@ -80,6 +80,38 @@ Razorpay is used to handle payments within the app. The API allows:
 - **Order Management**: Users can create and manage orders, which are stored securely via Appwrite.
 - **Payment Integration**: Razorpay handles online payments, making transactions smooth and secure.
 - **Responsive UI**: Designed using Tailwind CSS, the app adapts to different screen sizes seamlessly.
+- **Progressive Web App (PWA)**: Fully functional as a PWA, allowing offline access and app-like functionality.
+
+## 🌐 Progressive Web App (PWA)
+
+The **React MC App** is built as a Progressive Web App, enabling users to experience app-like functionality directly in their browsers.
+
+### Key PWA Features:
+
+1. **Offline Access**:
+   The app caches essential resources using a service worker, allowing users to access it even without an internet connection.
+
+2. **Installable**:
+   Users can install the app on their devices like a native app and launch it from their home screen.
+
+3. **Fast and Reliable**:
+   By leveraging caching strategies, the app loads quickly and efficiently, even on slow or unreliable networks.
+
+4. **Secure**:
+   The app is served over HTTPS, ensuring that user data and interactions are secure.
+
+5. **Enhanced User Engagement**:
+   With push notifications and offline functionality, the app offers a more engaging experience for users.
+
+### How It Works:
+
+- A **service worker** is registered in the app, which handles caching and intercepting network requests.
+- The app's manifest file defines metadata like the app name, icons, and theme colors for seamless installation.
+- The **Vite PWA plugin** simplifies the integration of PWA features into the app during development and production builds.
+
+![PWA Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/pwa.png)
+
+---
 
 ## ✨ Future Enhancements
 

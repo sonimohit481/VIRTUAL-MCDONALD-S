@@ -26,6 +26,16 @@ Modern web applications built with React
 
 🔗 [Live Demo](https://mcdonaldclonereact01.netlify.app/)
 
+### Features:
+
+- Integration of libraries like **Formik**, **Yup**, and **Redux** for state management and form validation.
+- **Appwrite** for backend services like user authentication and data storage.
+- **Razorpay** integration for payment processing.
+- Built as a **Progressive Web App (PWA)** for offline access, app-like experience, and better performance.
+  ![PWA Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/main/react-mc-app/public/pwa.png)
+
+---
+
 ## Purpose
 
 This repository serves as a learning resource and demonstration of web development skills, progressing from basic fundamentals to modern frameworks.
@@ -33,12 +43,6 @@ This repository serves as a learning resource and demonstration of web developme
 ## Credits
 
 Design inspiration from McDonald's website.
-
-## How to Use
-
-1. Clone the repository
-2. Navigate to either the basic or Next.js project folders
-3. Follow the specific README instructions in each folder
 
 ---
 
