@@ -1,12 +1,12 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ImCancelCircle } from "react-icons/im";
 import { IoSearch } from "react-icons/io5";
+import { FaArrowUp } from "react-icons/fa";
 
 import { MenuItem } from "../interface";
 import { menuData, categories } from "../constants/menuData";
 import { ProductCard } from "../components";
 
-// Helper function remains the same
 const getCategoryDescription = (category: string): string => {
   switch (category) {
     case "Burgers":
@@ -25,22 +25,19 @@ const getCategoryDescription = (category: string): string => {
       return "";
   }
 };
-// Add cart hooks
 
 const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Memoize filtered products to prevent unnecessary recalculations
   const filteredProducts = useMemo(() => {
     const searchTerms = searchQuery.toLowerCase().split(" ");
 
     return menuData.filter((item) => {
-      // Category filter
       const matchesCategory =
         selectedCategory === "All" || item.category === selectedCategory;
 
-      // Search filter - check if all search terms are found
       const matchesSearch = searchTerms.every((term) =>
         [
           item.name,
@@ -54,7 +51,6 @@ const Products = () => {
     });
   }, [searchQuery, selectedCategory]);
 
-  // Group products by category when showing all
   const groupedProducts = useMemo(() => {
     if (selectedCategory !== "All") return null;
 
@@ -67,6 +63,21 @@ const Products = () => {
       return acc;
     }, {} as Record<string, MenuItem[]>);
   }, [filteredProducts, selectedCategory]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -131,7 +142,6 @@ const Products = () => {
 
       {/* Products Grid */}
       {selectedCategory === "All" && groupedProducts ? (
-        // Grouped view when "All" is selected
         Object.entries(groupedProducts).map(([category, products]) => (
           <div key={category} className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -145,7 +155,6 @@ const Products = () => {
           </div>
         ))
       ) : (
-        // Regular grid for filtered products
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
@@ -168,6 +177,15 @@ const Products = () => {
             Clear filters
           </button>
         </div>
+      )}
+
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-yellow-400 hover:bg-yellow-500 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+        >
+          <FaArrowUp size={20} />
+        </button>
       )}
     </div>
   );
