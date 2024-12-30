@@ -10,35 +10,26 @@ A collection of projects using fundamental web technologies:
 - CSS
 - JavaScript
 
-![Screenshot](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/laptop.png)
+![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/laptop.png)
 
-🔗 [Live Demo](your-link-here)
+🔗 [Live Demo](https://virtual-mcdonald-clone-01.netlify.app/)
 
-## 2. Next.js Projects
+## 2. React Projects
 
-Modern web applications built with Next.js framework:
+Modern web applications built with React
 
 - React Components
-- Server-Side Rendering
 - API Routes
 - Modern UI/UX
 
 [Screenshot placeholder]
-🔗 [Live Demo](your-link-here)
+![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/react-mc-app/public/home.png)
+
+🔗 [Live Demo](https://mcdonaldclonereact01.netlify.app/)
 
 ## Purpose
 
 This repository serves as a learning resource and demonstration of web development skills, progressing from basic fundamentals to modern frameworks.
-
-## Screenshots
-
-### Basic Web Projects
-
-[Add screenshot here]
-
-### Next.js Projects
-
-[Add screenshot here]
 
 ## Credits
 
