@@ -8,7 +8,7 @@ import {
   verifyPayment,
 } from "../services/paymentService";
 import { useAuth } from "../context/AuthContext";
-import { CartItem, MenuItem } from "../interface";
+import { MenuItem } from "../interface";
 import { PaymentModal } from "../components";
 import { useCart } from "../context/CartContext";
 
@@ -35,36 +35,11 @@ const Cart = () => {
   >("preparing");
 
   useEffect(() => {
-    // const savedCart = localStorage.getItem("cart");
     if (cartItems) {
       setCart(cartItems);
     }
     setLoading(false);
   }, [cartItems]);
-
-  // const updateQuantity = (productId: number, newQuantity: number) => {
-  //   const updatedCart = cart
-  //     .map((item) =>
-  //       item.id === productId
-  //         ? { ...item, qan: Math.max(0, newQuantity) }
-  //         : item
-  //     )
-  //     .filter((item) => item.qan > 0);
-
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
-
-  // const removeItem = (productId: number) => {
-  //   const updatedCart = cart.filter((item) => item.id !== productId);
-  //   setCart(updatedCart);
-  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
-  // };
-
-  // const clearCart = () => {
-  //   setCart([]);
-  //   localStorage.setItem("cart", "[]");
-  // };
 
   const calculateTotal = () => {
     return cart.reduce((total, item) => total + item.price * item.qan, 0);
