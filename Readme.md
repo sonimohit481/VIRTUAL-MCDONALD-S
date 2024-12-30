@@ -10,7 +10,8 @@ A collection of projects using fundamental web technologies:
 - CSS
 - JavaScript
 
-[Screenshot placeholder]
+![Screenshot](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/laptop.png)
+
 🔗 [Live Demo](your-link-here)
 
 ## 2. Next.js Projects
