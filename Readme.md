@@ -10,7 +10,7 @@ A collection of projects using fundamental web technologies:
 - CSS
 - JavaScript
 
-![Screenshot](https://raw.githubusercontent.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/mobal.png)
+![Screenshot](https://github.com/sonimohit481/VIRTUAL-MCDONALD-S/blob/main/Basic/image/4k.png)
 
 🔗 [Live Demo](https://virtual-mcdonald-clone-01.netlify.app/)
 
