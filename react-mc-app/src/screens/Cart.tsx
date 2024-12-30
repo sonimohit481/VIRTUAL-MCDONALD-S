@@ -81,9 +81,7 @@ const Cart = () => {
             setTimeout(async () => {
               await processOrder(cart, user.$id);
               setModalMessage("Order placed successfully!");
-              setCart([]);
-              localStorage.setItem("cart", "[]");
-
+              clearCart();
               setShowModal(false);
               navigate("/orders");
             }, 2000);
