@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import axiosInstance from "../lib/axios";
 
 const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -38,6 +39,7 @@ const AuthForm = () => {
         } else {
           await signInWithEmail(values.email, values.password);
         }
+        await axiosInstance.get("/");
         navigate("/");
       } catch (err: any) {
         setErrors({ email: err.message || "An error occurred" });
