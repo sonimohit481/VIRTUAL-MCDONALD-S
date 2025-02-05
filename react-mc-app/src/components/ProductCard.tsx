@@ -13,7 +13,7 @@ export const ProductCard = ({ product }: { product: MenuItem }) => {
   const quantity = getItemQuantity(product.id);
 
   return (
-    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative flex flex-col justify-between">
+    <div className="bg-white dark:bg-gray-800 dark:text-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-200 relative flex flex-col justify-between cursor-cold">
       <button
         onClick={() => setShowModal(true)}
         className="absolute top-2 right-2  p-2 bg-white bg-opacity-75 rounded-full hover:bg-opacity-100"
